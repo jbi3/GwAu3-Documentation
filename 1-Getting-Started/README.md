@@ -103,7 +103,8 @@ Before starting any guide, make sure you have:
   - Must have an active account
   
 - [ ] **GwAu3 library** downloaded
-  - Download and extract to your preferred location
+  - Download from [GitHub](https://github.com/JAG-GW/GwAu3)
+  - Extract to your preferred location
   
 - [ ] **Administrator privileges**
   - Required for memory access

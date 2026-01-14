@@ -46,7 +46,7 @@ In this guide, you'll create a simple but functional Guild Wars bot that:
    - You need an active account
 
 3. **GwAu3 Library**
-   - Download from GitHub repository
+   - Download from [GitHub repository](https://github.com/JAG-GW/GwAu3)
    - Extract to your preferred location (e.g., `C:\GW\GwAu3-main`)
 
 ### Knowledge Required
