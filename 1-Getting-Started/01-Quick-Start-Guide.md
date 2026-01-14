@@ -46,8 +46,8 @@ In this guide, you'll create a simple but functional Guild Wars bot that:
    - You need an active account
 
 3. **GwAu3 Library**
-   - Already in: `C:\Users\jeanb\Desktop\GW\GwAu3-main`
-   - If not, download from GitHub
+   - Download from GitHub repository
+   - Extract to your preferred location (e.g., `C:\GW\GwAu3-main`)
 
 ### Knowledge Required
 
@@ -500,12 +500,12 @@ Now that you have a working bot, dive deeper:
 
 ### Study Existing Bots
 
-Look at professional bots in `Scripts/` folder:
-- `Scripts/Farm-Destroyer/` - Farming bot
-- `Scripts/BotsHub/` - Multi-bot manager
-- `Scripts/Follower-bot/` - Follow party leader
+Look at example bots in the `Scripts/` folder to learn advanced techniques:
+- Study movement and combat logic
+- See how agents and targets are managed
+- Learn skillbar and inventory management patterns
 
-**Tip**: Read their code to learn advanced techniques!
+**Tip**: Read existing code to understand best practices!
 
 ---
 

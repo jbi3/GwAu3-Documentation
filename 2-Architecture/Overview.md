@@ -38,7 +38,7 @@ This document provides a high-level overview of how all these pieces work togeth
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     Your Bot Script                          │
-│  (e.g., Farm-Destroyer.au3, BotsHub.au3, etc.)             │
+│  (e.g., MyFarmBot.au3, MyFollowerBot.au3, etc.)            │
 └──────────────────────────┬──────────────────────────────────┘
                            │ Calls GwAu3 functions
                            ▼

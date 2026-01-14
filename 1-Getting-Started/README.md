@@ -103,7 +103,7 @@ Before starting any guide, make sure you have:
   - Must have an active account
   
 - [ ] **GwAu3 library** downloaded
-  - Located at: `C:\Users\jeanb\Desktop\GW\GwAu3-main\`
+  - Download and extract to your preferred location
   
 - [ ] **Administrator privileges**
   - Required for memory access
@@ -158,12 +158,12 @@ Once you've finished all three guides, you'll be ready for:
 - **[SmartCast AI](../6-Advanced-Systems/)** - Intelligent skill usage
 - **[Multiple Bots](02-Core-Initialization.md#multiple-character-support)** - Manage multiple characters
 
-### Study Professional Bots
-Examine these complete bots in `Scripts/`:
-- `Farm-Destroyer/` - Advanced farming bot
-- `BotsHub/` - Multi-bot management system
-- `BubbleTeasChestruns/` - Chest running bot
-- `Encounter ReBuilt/` - Complex encounter bot
+### Study Example Bots
+Examine complete bots in the `Scripts/` folder to see:
+- Advanced farming patterns and loot management
+- Multi-bot coordination and management
+- Movement and pathfinding implementations
+- Combat logic and skill usage strategies
 
 ---
 

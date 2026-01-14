@@ -829,10 +829,10 @@ EndFunc
 - [SmartCast AI](../6-Advanced-Systems/) - Intelligent skill usage
 - [Multiple Bots](02-Core-Initialization.md#multiple-character-support) - Run multiple bots
 
-**Study professional bots**:
-- `Scripts/Farm-Destroyer/` - Advanced farming
-- `Scripts/BotsHub/` - Bot management system
-- `Scripts/BubbleTeasChestruns/` - Chest running
+**Study existing bots in `Scripts/` to learn**:
+- Advanced farming patterns and optimization
+- Multi-bot coordination techniques
+- Complex movement and pathfinding logic
 
 ---
 
