@@ -1,5 +1,7 @@
 # GwAu3 Documentation
 
+> **Version 0.1.0 (Beta)** | *Last Updated: January 14, 2026*
+
 **Welcome to the GwAu3 comprehensive documentation!**
 
 This documentation is designed to help you understand the GwAu3 framework from the ground up, whether you're a complete beginner or an experienced developer looking to create advanced automation scripts for Guild Wars.
@@ -153,8 +155,6 @@ Links to related documentation are provided throughout to help you navigate.
 
 **Foundation Complete!** Getting Started guides and Architecture documentation are ready for use.
 
-*Last Updated: January 14, 2026*
-
 ---
 
 ## 🤝 Contributing to Documentation
@@ -163,6 +163,25 @@ If you find errors, unclear explanations, or want to add examples:
 1. Document the issue clearly
 2. Suggest improvements with specific examples
 3. Submit feedback through the project's issue tracker or community channels
+
+---
+
+## 📋 Changelog
+
+### Version 0.1.0 (Beta) - January 14, 2026
+
+**Initial Documentation Release** - Foundation complete with essential guides and priority modules
+
+**Added:**
+- **Getting Started** (4 guides) - Quick Start, Core Initialization, First Bot Tutorial, Navigation README
+- **Architecture** (5 documents) - Overview, Memory System, Packet System, Scanner System, Module Structure
+- **Core Systems** - Core Functions Reference (Memory, Scanner, Commands)
+- **Priority Modules** (5 modules) - Agent, Skill (1300+ lines!), Map, Item, Player & Party
+
+**Notes:**
+- First beta release with beginner-friendly approach
+- Foundation complete for new users to start building bots
+- See "Coming Soon" sections above for planned future content
 
 ---
 
