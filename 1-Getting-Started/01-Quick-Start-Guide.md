@@ -180,7 +180,7 @@ While True
     Local $myID = Agent_GetMyID()
     Local $hp = Agent_GetAgentInfo($myID, "HP")
     If $hp <= 0 Then
-        ConsoleWrite("DEAD! Waiting for respawn..." & @CRLF)
+        ConsoleWrite(@CRLF & "DEAD! Waiting for respawn..." & @CRLF)
         Sleep(10500)
         ContinueLoop
     EndIf
@@ -337,7 +337,7 @@ WEnd
 Local $myID = Agent_GetMyID()
 Local $hp = Agent_GetAgentInfo($myID, "HP")
 If $hp <= 0 Then
-    ConsoleWrite(@CRLF & "💀 DEAD! Waiting for respawn..." & @CRLF)
+    ConsoleWrite(@CRLF & "DEAD! Waiting for respawn..." & @CRLF)
     Sleep(10000)
     ContinueLoop
 EndIf
