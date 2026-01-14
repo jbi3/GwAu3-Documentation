@@ -243,7 +243,7 @@ Func _DisplayStatus()
     $lastUpdate = TimerInit()
     
     Local $hp = Agent_GetAgentInfo(-2, "HP")
-    Local $energy = Agent_GetAgentInfo(-2, "Energy")
+    Local $energy = Agent_GetAgentInfo(-2, "EnergyPercent")
     
     ConsoleWrite(@CR & "HP: " & Round($hp * 100, 1) & "% | " & _
                  "Energy: " & Round($energy * 100, 1) & "% | " & _
@@ -317,7 +317,7 @@ Add this function **before** the main loop:
 ; Main combat logic
 Func _DoCombat()
     ; Check energy
-    Local $energy = Agent_GetAgentInfo(-2, "Energy")
+    Local $energy = Agent_GetAgentInfo(-2, "EnergyPercent")
     If $energy < $ENERGY_THRESHOLD Then
         Return False  ; Not enough energy
     EndIf
@@ -434,8 +434,9 @@ Func _DoLoot()
     
     ; Move to item if too far
     If $itemDist > 250 Then  ; Need to be close to pick up
-        Local $itemPos = Agent_GetAgentInfo($items, "Pos")
-        Map_Move($itemPos[0], $itemPos[1])
+        Local $itemX = Agent_GetAgentInfo($items, "X")
+        Local $itemY = Agent_GetAgentInfo($items, "Y")
+        Map_Move($itemX, $itemY)
         Sleep(500)
     EndIf
     
@@ -565,8 +566,9 @@ Func _CheckHealth()
         ConsoleWrite(@CRLF & "⚠️ CRITICAL HEALTH! Running away..." & @CRLF)
         
         ; Run backwards
-        Local $myPos = Agent_GetAgentInfo(-2, "Pos")
-        Map_Move($myPos[0] + 500, $myPos[1] + 500)  ; Run away
+        Local $myX = Agent_GetAgentInfo(-2, "X")
+        Local $myY = Agent_GetAgentInfo(-2, "Y")
+        Map_Move($myX + 500, $myY + 500)  ; Run away
         
         Sleep(5000)  ; Wait to recover
         Return True
@@ -627,7 +629,7 @@ Func _DisplayStatus()
     $lastUpdate = TimerInit()
     
     Local $hp = Agent_GetAgentInfo(-2, "HP")
-    Local $energy = Agent_GetAgentInfo(-2, "Energy")
+    Local $energy = Agent_GetAgentInfo(-2, "EnergyPercent")
     Local $runtime = TimerDiff($g_hStartTime) / 1000 / 60  ; Minutes
     
     ConsoleWrite(@CR & "Runtime: " & Round($runtime, 1) & "m | " & _

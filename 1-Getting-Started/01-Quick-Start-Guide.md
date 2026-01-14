@@ -193,14 +193,15 @@ ConsoleWrite("Bot stopped." & @CRLF)
 ; Display current bot status
 Func DisplayStatus()
     ; Get your position
-    Local $myPos = Agent_GetAgentInfo(-2, "Pos")
+    Local $posX = Agent_GetAgentInfo(-2, "X")
+    Local $posY = Agent_GetAgentInfo(-2, "Y")
     
     ; Get health and energy
     Local $hp = Agent_GetAgentInfo(-2, "HP")
-    Local $energy = Agent_GetAgentInfo(-2, "Energy")
+    Local $energy = Agent_GetAgentInfo(-2, "EnergyPercent")
     
     ; Display (update every call)
-    ConsoleWrite(@CR & "Position: X=" & Round($myPos[0], 1) & " Y=" & Round($myPos[1], 1) & _
+    ConsoleWrite(@CR & "Position: X=" & Round($posX, 1) & " Y=" & Round($posY, 1) & _
                  " | HP: " & Round($hp * 100, 1) & "% " & _
                  " | Energy: " & Round($energy * 100, 1) & "%     ")
 EndFunc
@@ -322,13 +323,14 @@ WEnd
 ### Display Function
 
 ```autoit
-Local $myPos = Agent_GetAgentInfo(-2, "Pos")
+Local $posX = Agent_GetAgentInfo(-2, "X")
+Local $posY = Agent_GetAgentInfo(-2, "Y")
 Local $hp = Agent_GetAgentInfo(-2, "HP")
 ```
 
 **What it does**:
 - `-2` means "yourself"
-- Reads position, HP, and energy from memory
+- Reads X, Y coordinates, HP, and energy from memory
 - Displays in console
 
 **See**: [Agent Module - Agent_GetAgentInfo](../4-Modules-Reference/Agent-Module.md#agent_getagentinfo)
@@ -488,8 +490,9 @@ Skill_UseSkill(2, $enemy)
 **Add movement**:
 ```autoit
 ; Move to enemy position
-Local $enemyPos = Agent_GetAgentInfo($enemy, "Pos")
-Map_Move($enemyPos[0], $enemyPos[1])
+Local $enemyX = Agent_GetAgentInfo($enemy, "X")
+Local $enemyY = Agent_GetAgentInfo($enemy, "Y")
+Map_Move($enemyX, $enemyY)
 ```
 
 ---
@@ -556,8 +559,9 @@ Core_Initialize("Character Name")
 ; === YOUR CHARACTER ===
 Agent_GetMyID()                        ; Your agent ID
 Agent_GetAgentInfo(-2, "HP")          ; Your HP (0.0-1.0)
-Agent_GetAgentInfo(-2, "Energy")      ; Your energy (0.0-1.0)
-Agent_GetAgentInfo(-2, "Pos")         ; Your position [X, Y]
+Agent_GetAgentInfo(-2, "EnergyPercent") ; Your energy (0.0-1.0)
+Agent_GetAgentInfo(-2, "X")           ; Your X coordinate
+Agent_GetAgentInfo(-2, "Y")           ; Your Y coordinate
 
 ; === TARGETING ===
 Agent_TargetNearestEnemy(1200)        ; Find enemy in range
