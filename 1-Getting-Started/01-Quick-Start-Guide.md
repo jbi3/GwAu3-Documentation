@@ -174,6 +174,15 @@ While True
         ContinueLoop
     EndIf
     
+    ; Check if dead
+    Local $myID = Agent_GetMyID()
+    Local $hp = Agent_GetAgentInfo($myID, "HP")
+    If $hp <= 0 Then
+        ConsoleWrite(@CRLF & "💀 DEAD! Waiting for respawn..." & @CRLF)
+        Sleep(10000)
+        ContinueLoop
+    EndIf
+    
     ; === DISPLAY CURRENT STATUS ===
     DisplayStatus()
     
@@ -317,6 +326,31 @@ WEnd
 - Updates status display
 - Finds and attacks enemies
 - Repeats until ESC pressed
+
+---
+
+### Death Check
+
+```autoit
+Local $myID = Agent_GetMyID()
+Local $hp = Agent_GetAgentInfo($myID, "HP")
+If $hp <= 0 Then
+    ConsoleWrite(@CRLF & "💀 DEAD! Waiting for respawn..." & @CRLF)
+    Sleep(10000)
+    ContinueLoop
+EndIf
+```
+
+**What it does**:
+- Checks if your character is dead (HP = 0)
+- Stops attacking when dead
+- Waits 10 seconds for respawn
+- Continues bot loop after respawn
+
+**Why it's important**:
+- Prevents wasting energy/skills while dead
+- Avoids errors from trying to act while defeated
+- Automatically resumes after resurrection
 
 ---
 
