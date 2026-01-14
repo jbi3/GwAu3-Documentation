@@ -111,7 +111,9 @@ GwAu3-main/
 
 ### Step 1: Basic Template
 
-Open `MyBot.au3` in your editor (e.g. AutoIt editor (SciTE))and paste this code:
+Open `MyBot.au3` in AutoIt editor (SciTE) and paste this code:
+
+**IMPORTANT**: Use SciTE because there is no GUI in this first bot.
 
 ```autoit
 ; ===================================================================
@@ -178,8 +180,8 @@ While True
     Local $myID = Agent_GetMyID()
     Local $hp = Agent_GetAgentInfo($myID, "HP")
     If $hp <= 0 Then
-        ConsoleWrite(@CRLF & "💀 DEAD! Waiting for respawn..." & @CRLF)
-        Sleep(10000)
+        ConsoleWrite("DEAD! Waiting for respawn..." & @CRLF)
+        Sleep(10500)
         ContinueLoop
     EndIf
     
@@ -212,7 +214,7 @@ Func DisplayStatus()
     ; Display (update every call)
     ConsoleWrite(@CR & "Position: X=" & Round($posX, 1) & " Y=" & Round($posY, 1) & _
                  " | HP: " & Round($hp * 100, 1) & "% " & _
-                 " | Energy: " & Round($energy * 100, 1) & "%     ")
+                 " | Energy: " & Round($energy * 100, 1) & "% ")
 EndFunc
 
 ; Find and attack nearest enemy
@@ -343,14 +345,8 @@ EndIf
 
 **What it does**:
 - Checks if your character is dead (HP = 0)
-- Stops attacking when dead
 - Waits 10 seconds for respawn
 - Continues bot loop after respawn
-
-**Why it's important**:
-- Prevents wasting energy/skills while dead
-- Avoids errors from trying to act while defeated
-- Automatically resumes after resurrection
 
 ---
 
@@ -400,15 +396,10 @@ Local $enemy = Agent_TargetNearestEnemy(1200)
 
 ### Step 2: Run the Script
 
-**Method 1: From SciTE Editor**
+**From SciTE Editor**
 1. Open `MyBot.au3` in SciTE (AutoIt editor)
 2. Press **F5** to run
 3. Watch the console output
-
-**Method 2: From Explorer**
-1. Right-click `MyBot.au3`
-2. Select "Run Script"
-3. Console window appears
 
 ---
 
