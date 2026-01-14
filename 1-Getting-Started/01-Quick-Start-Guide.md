@@ -111,7 +111,7 @@ GwAu3-main/
 
 ### Step 1: Basic Template
 
-Open `MyBot.au3` in AutoIt editor (SciTE) and paste this code:
+Open `MyBot.au3` in your editor (e.g. AutoIt editor (SciTE))and paste this code:
 
 ```autoit
 ; ===================================================================
