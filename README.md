@@ -6,6 +6,14 @@ This documentation is designed to help you understand the GwAu3 framework from t
 
 ---
 
+## ⚠️ Important Notes
+
+- **32-bit Requirement**: GwAu3 only works with AutoIt3 in 32-bit (x86) mode
+- **Terms of Service**: Using bots may violate Guild Wars ToS - use at your own risk
+- **Foundation Code**: Never modify `API/` or `Utilities/` directly - always work in the `Scripts/` folder for your bots
+
+---
+
 ## 📖 Documentation Structure
 
 ### [1. Getting Started](1-Getting-Started/)
@@ -28,9 +36,11 @@ This documentation is designed to help you understand the GwAu3 framework from t
 *Deep dive into core functionality*
 
 - **[Core Functions](3-Core-Systems/Core-Functions.md)** ✅ - Core.au3 functions reference (Memory, Scanner, Commands)
-- **[Assembler](3-Core-Systems/Assembler.md)** 📝 - ASM code injection system *(coming soon)*
-- **[ArrayStructure](3-Core-Systems/ArrayStructure.md)** 📝 - Array and structure utilities *(coming soon)*
-- **[Updater](3-Core-Systems/Updater.md)** 📝 - Auto-update system *(coming soon)*
+
+**Coming Soon:**
+- Assembler - ASM code injection system
+- ArrayStructure - Array and structure utilities
+- Updater - Auto-update system
 
 ### [4. Modules Reference](4-Modules-Reference/)
 *Complete API reference for all modules*
@@ -52,31 +62,34 @@ This documentation is designed to help you understand the GwAu3 framework from t
 
 *All modules combine Command (actions) and Data (information) functions in one comprehensive reference.*
 
-### [5. Constants Reference](5-Constants-Reference/)
+### 5. Constants Reference 📝
 *Quick lookup for IDs and enumerations*
 
-- **[Map IDs](5-Constants-Reference/Map-IDs.md)** - All map/zone constants
-- **[Item IDs](5-Constants-Reference/Item-IDs.md)** - Item model IDs
-- **[Skill IDs](5-Constants-Reference/Skill-IDs.md)** - Skill constants
-- **[NPC IDs](5-Constants-Reference/NPC-IDs.md)** - NPC model IDs
-- **[Enumerations](5-Constants-Reference/Enumerations.md)** - All enums (states, types, etc.)
+**Coming Soon:**
+- Map IDs - All map/zone constants
+- Item IDs - Item model IDs
+- Skill IDs - Skill constants
+- NPC IDs - NPC model IDs
+- Enumerations - All enums (states, types, etc.)
 
-### [6. Advanced Systems](6-Advanced-Systems/)
+### 6. Advanced Systems 📝
 *For advanced users and complex bots*
 
-- **[Pathfinding](6-Advanced-Systems/Pathfinding.md)** - Pathfinding system
-- **[SmartCast - Utility AI](6-Advanced-Systems/SmartCast-UtilityAI.md)** - AI skill system
-- **[Packet Crafting](6-Advanced-Systems/Packet-Crafting.md)** - Custom packet creation
-- **[Memory Patterns](6-Advanced-Systems/Memory-Patterns.md)** - Advanced scanner usage
+**Coming Soon:**
+- Pathfinding - Pathfinding system with GWPathfinder.dll
+- SmartCast - Utility AI - AI-driven skill usage system
+- Packet Crafting - Custom packet creation
+- Memory Patterns - Advanced scanner usage
 
-### [7. Learning Guides](7-Learning-Guides/)
+### 7. Learning Guides 📝
 *Educational content for mastering GwAu3*
 
-- **[Understanding Agents](7-Learning-Guides/Understanding-Agents.md)** - Deep dive into agents
-- **[Inventory Management](7-Learning-Guides/Inventory-Management.md)** - Inventory system explained
-- **[Movement and Pathfinding](7-Learning-Guides/Movement-and-Pathfinding.md)** - How movement works
-- **[Skill Usage Patterns](7-Learning-Guides/Skill-Usage-Patterns.md)** - Using skills effectively
-- **[Common Patterns](7-Learning-Guides/Common-Patterns.md)** - Reusable code patterns
+**Coming Soon:**
+- Understanding Agents - Deep dive into agents
+- Inventory Management - Inventory system explained
+- Movement and Pathfinding - How movement works
+- Skill Usage Patterns - Using skills effectively
+- Common Patterns - Reusable code patterns
 
 ---
 
@@ -93,15 +106,20 @@ This documentation is designed to help you understand the GwAu3 framework from t
 3. Understand [Scanner System](2-Architecture/Scanner-System.md) - Pattern scanning explained
 4. Learn [Module Structure](2-Architecture/Module-Structure.md) - How modules are organized
 
-### "I'm looking for a specific function"
-- Check [Agent Module](4-Modules-Reference/Agent-Module.md) ✅ for targeting/agent functions
-- Check [Core Functions](3-Core-Systems/Core-Functions.md) ✅ for low-level API
-- More modules coming soon (Skill, Map, Item, Player, Party, etc.)
+### "I'm looking for a specific function" ✅ *5 Priority Modules Ready!*
+- Check [Agent Module](4-Modules-Reference/Agent-Module.md) for targeting/agent functions
+- Check [Skill Module](4-Modules-Reference/Skill-Module.md) for skill usage and skillbar management
+- Check [Map Module](4-Modules-Reference/Map-Module.md) for movement and travel functions
+- Check [Item Module](4-Modules-Reference/Item-Module.md) for inventory and item management
+- Check [Player & Party](4-Modules-Reference/Player-Party-Modules.md) for character info and hero management
+- Check [Core Functions](3-Core-Systems/Core-Functions.md) for low-level API
+- 20+ additional modules coming soon (Chat, Trade, Quest, Title, etc.)
 
-### "I want to build something advanced"
-1. Master the basics first
-2. Explore [Advanced Systems](6-Advanced-Systems/)
+### "I want to build something advanced" 📝 *Coming Soon*
+1. Master the basics first (Getting Started + Architecture sections)
+2. Study the 5 priority modules (Agent, Skill, Map, Item, Player & Party)
 3. Study existing bots in `/Scripts` directory
+4. Advanced Systems documentation (Pathfinding, SmartCast) coming soon
 
 ---
 
@@ -128,7 +146,7 @@ Links to related documentation are provided throughout to help you navigate.
 | Getting Started | ✅ Complete | 100% (4/4 files) |
 | Architecture | ✅ Complete | 100% (5/5 files) |
 | Core Systems | 🔄 In Progress | 25% (1/4 files) |
-| Modules Reference | 🔄 In Progress | 2% (1/50 files) |
+| Modules Reference | 🔄 In Progress | 10% (5/50 files) |
 | Constants Reference | 📝 Planned | 0% |
 | Advanced Systems | 📝 Planned | 0% |
 | Learning Guides | 📝 Planned | 0% |
@@ -143,16 +161,8 @@ Links to related documentation are provided throughout to help you navigate.
 
 If you find errors, unclear explanations, or want to add examples:
 1. Document the issue clearly
-2. Suggest improvements
-3. Follow the guidelines in [CONTRIBUTING.md](../CONTRIBUTING.md)
-
----
-
-## ⚠️ Important Notes
-
-- **32-bit Requirement**: GwAu3 only works with AutoIt3 in 32-bit (x86) mode
-- **Terms of Service**: Using bots may violate Guild Wars ToS - use at your own risk
-- **Foundation Code**: Never modify `API/` or `Utilities/` directly - see [CONTRIBUTING.md](../CONTRIBUTING.md)
+2. Suggest improvements with specific examples
+3. Submit feedback through the project's issue tracker or community channels
 
 ---
 
