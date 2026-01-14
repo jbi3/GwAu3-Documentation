@@ -28,6 +28,7 @@ This documentation is designed to help you understand the GwAu3 framework from t
 ### [2. Architecture](2-Architecture/)
 *Understanding how GwAu3 works internally*
 
+- **[📖 Start Here: Architecture Guide](2-Architecture/README.md)** - Reading order and navigation
 - **[Overview](2-Architecture/Overview.md)** ⭐ - High-level system architecture
 - **[Memory System](2-Architecture/Memory-System.md)** - How memory reading/writing works
 - **[Packet System](2-Architecture/Packet-System.md)** - Packet sending and handling
@@ -116,7 +117,7 @@ Links to related documentation are provided throughout to help you navigate.
 | Section | Status | Completion |
 |---------|--------|-----------|
 | Getting Started | ✅ Complete | 100% (4/4 files) |
-| Architecture | ✅ Complete | 100% (5/5 files) |
+| Architecture | ✅ Complete | 100% (6/6 files) |
 | Core Systems | 🔄 In Progress | 25% (1/4 files) |
 | Modules Reference | 🔄 In Progress | 10% (5/50 files) |
 | Constants Reference | 📝 Planned | 0% |
