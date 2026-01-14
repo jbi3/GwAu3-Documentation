@@ -61,11 +61,18 @@ In this guide, you'll create a simple but functional Guild Wars bot that:
 
 ### Step 1: Verify AutoIt Installation
 
-1. Open Windows PowerShell or Command Prompt
-2. Type: `"C:\Program Files (x86)\AutoIt3\AutoIt3.exe" /?`
-3. You should see AutoIt version information
+**Method 1 - Check installation folder:**
+1. Navigate to `C:\Program Files (x86)\AutoIt3\` (or your installation folder)
+2. Verify these files exist:
+   - `AutoIt3.exe` (32-bit version)
+   - `SciTE\SciTE.exe` (editor)
 
-**If this doesn't work**: AutoIt is not installed correctly. Reinstall 32-bit version.
+**Method 2 - Check via version:**
+1. Right-click on `C:\Program Files (x86)\AutoIt3\AutoIt3.exe`
+2. Select "Properties" → "Details" tab
+3. Verify "File description" shows "AutoIt v3" and architecture is x86 (32-bit)
+
+**If files are missing**: AutoIt is not installed correctly. Reinstall 32-bit version.
 
 ---
 
