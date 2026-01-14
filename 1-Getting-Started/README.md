@@ -279,9 +279,10 @@ After completing Getting Started:
 
 1. **Master Core Modules**
    - [Agent Module](../4-Modules-Reference/Agent-Module.md)
-   - Skill Module (coming soon)
-   - Map Module (coming soon)
-   - Item Module (coming soon)
+   - [Skill Module](../4-Modules-Reference/Skill-Module.md)
+   - [Map Module](../4-Modules-Reference/Map-Module.md)
+   - [Item Module](../4-Modules-Reference/Item-Module.md)
+   - [Player & Party Modules](../4-Modules-Reference/Player-Party-Modules.md)
 
 2. **Understand Architecture**
    - [Architecture Overview](../2-Architecture/Overview.md)
