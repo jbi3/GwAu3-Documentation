@@ -38,6 +38,7 @@ This documentation is designed to help you understand the GwAu3 framework from t
 ### [3. Core Systems](3-Core-Systems/)
 *Deep dive into core functionality*
 
+- **[📖 Start Here: Core Systems Guide](3-Core-Systems/README.md)** - Navigation and overview
 - **[Core Functions](3-Core-Systems/Core-Functions.md)** ✅ - Core.au3 functions reference (Memory, Scanner, Commands)
 
 **Coming Soon:**
@@ -47,6 +48,8 @@ This documentation is designed to help you understand the GwAu3 framework from t
 
 ### [4. Modules Reference](4-Modules-Reference/)
 *Complete API reference for all modules*
+
+- **[📖 Start Here: Module Reference Guide](4-Modules-Reference/README.md)** - Navigation and quick reference
 
 **Complete Documentation (Priority Modules):**
 - **[Agent Module](4-Modules-Reference/Agent-Module.md)** ✅ - Targeting, agent info, nearest enemy/ally
@@ -118,8 +121,8 @@ Links to related documentation are provided throughout to help you navigate.
 |---------|--------|-----------|
 | Getting Started | ✅ Complete | 100% (4/4 files) |
 | Architecture | ✅ Complete | 100% (6/6 files) |
-| Core Systems | 🔄 In Progress | 25% (1/4 files) |
-| Modules Reference | 🔄 In Progress | 10% (5/50 files) |
+| Core Systems | 🔄 In Progress | 40% (2/5 files) |
+| Modules Reference | 🔄 In Progress | 12% (6/50 files) |
 | Constants Reference | 📝 Planned | 0% |
 | Advanced Systems | 📝 Planned | 0% |
 | Learning Guides | 📝 Planned | 0% |
