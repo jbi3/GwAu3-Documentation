@@ -827,9 +827,11 @@ EndFunc
 - [Party Module](../4-Modules-Reference/README.md) - Hero management
 
 **Advanced topics**:
-- [Pathfinding System](../6-Advanced-Systems/) - Navigate complex terrain
-- [SmartCast AI](../6-Advanced-Systems/) - Intelligent skill usage
 - [Multiple Bots](02-Core-Initialization.md#multiple-character-support) - Run multiple bots
+
+**Coming Soon:**
+- Pathfinding System - Navigate complex terrain
+- SmartCast AI - Intelligent skill usage
 
 **Study existing bots in `Scripts/` to learn**:
 - Advanced farming patterns and optimization

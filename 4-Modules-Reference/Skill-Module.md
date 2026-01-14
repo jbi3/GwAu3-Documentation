@@ -1183,7 +1183,7 @@ EndFunc
 ## See Also
 
 - **[Agent Module](Agent-Module.md)** - For targeting entities
-- **[Party Module](Party-Module.md)** - For hero management
+- **[Player & Party Modules](Player-Party-Modules.md)** - For hero management
 - **[Player Module](Player-Module.md)** - For character stats
 - **[Attribute Module](Attribute-Module.md)** - For attribute levels
 - **[Core Functions](../3-Core-Systems/Core-Functions.md)** - For Core_Enqueue

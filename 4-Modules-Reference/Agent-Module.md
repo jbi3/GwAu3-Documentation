@@ -819,7 +819,7 @@ EndFunc
 - **[Core Functions](../3-Core-Systems/Core-Functions.md)** - Low-level API used
 - **[Skill Module](Skill-Module.md)** - Combat skills
 - **[Map Module](Map-Module.md)** - Movement
-- **[Party Module](Party-Module.md)** - Party management
+- **[Player & Party Modules](Player-Party-Modules.md)** - Party management
 
 ---
 

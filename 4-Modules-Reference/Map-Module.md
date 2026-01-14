@@ -1069,9 +1069,11 @@ EndIf
 ## See Also
 
 - **[Agent Module](Agent-Module.md)** - For getting agent positions
-- **[Party Module](Party-Module.md)** - For group travel
-- **[Pathfinding System](../6-Advanced-Systems/Pathfinding.md)** - Advanced navigation
+- **[Party Module](Player-Party-Modules.md)** - For group travel
 - **[Core Functions](../3-Core-Systems/Core-Functions.md)** - For Core_Enqueue
+
+**Coming Soon:**
+- Pathfinding System - Advanced navigation
 
 ---
 

@@ -8,9 +8,11 @@ Welcome to GwAu3! This section will get you from zero to building your first fun
 
 Follow these guides in order:
 
-### 1. [Quick Start Guide](01-Quick-Start-Guide.md) ⏱️ 10-15 min
+### 1. Absolute beginner? [Quick Start Guide](01-Quick-Start-Guide.md) ⏱️ 10-15 min
 
 **Your first bot in 10 minutes!**
+
+**No programming experience required!** Just follow the steps.
 
 Build a simple but working bot that:
 - Connects to Guild Wars
@@ -24,7 +26,7 @@ Build a simple but working bot that:
 
 ---
 
-### 2. [Core Initialization Guide](02-Core-Initialization.md) ⏱️ 15-20 min
+### 2. Want to understand how it works? [Core Initialization Guide](02-Core-Initialization.md) ⏱️ 15-20 min
 
 **Deep dive into how GwAu3 connects to Guild Wars**
 
@@ -41,7 +43,7 @@ Learn about:
 
 ---
 
-### 3. [First Bot Tutorial](03-First-Bot-Tutorial.md) ⏱️ 45-60 min
+### 3. Ready to build real bots? [First Bot Tutorial](03-First-Bot-Tutorial.md) ⏱️ 45-60 min
 
 **Build a complete farming bot from scratch!**
 
@@ -56,38 +58,6 @@ Create a professional-quality bot with:
 **Perfect for**: Learning complete bot development, understanding bot architecture
 
 **Prerequisites**: Quick Start Guide completed, basic AutoIt knowledge
-
----
-
-## 🎯 Quick Reference
-
-### Absolute Beginner?
-
-**Start here**: [Quick Start Guide](01-Quick-Start-Guide.md)
-
-**Time investment**: 10 minutes to get your first bot running
-
-**No programming experience required!** Just follow the steps.
-
----
-
-### Want to Understand How It Works?
-
-**Start here**: [Core Initialization Guide](02-Core-Initialization.md)
-
-**Time investment**: 15-20 minutes to understand initialization
-
-**Covers**: Memory access, pattern scanning, error handling
-
----
-
-### Ready to Build Real Bots?
-
-**Start here**: [First Bot Tutorial](03-First-Bot-Tutorial.md)
-
-**Time investment**: 45-60 minutes for complete farming bot
-
-**You'll learn**: Combat, looting, safety, statistics, and more
 
 ---
 
@@ -155,9 +125,11 @@ Once you've finished all three guides, you'll be ready for:
 - **[Module Reference](../4-Modules-Reference/README.md)** - Explore all available functions
 
 ### Advanced Topics
-- **[Pathfinding System](../6-Advanced-Systems/)** - Navigate complex terrain
-- **[SmartCast AI](../6-Advanced-Systems/)** - Intelligent skill usage
 - **[Multiple Bots](02-Core-Initialization.md#multiple-character-support)** - Manage multiple characters
+
+**Coming Soon:**
+- Pathfinding System - Navigate complex terrain
+- SmartCast AI - Intelligent skill usage
 
 ### Study Example Bots
 Examine complete bots in the `Scripts/` folder to see:
@@ -247,7 +219,9 @@ AutoIt error messages are helpful - read them carefully!
 
 ### Guild Wars Resources
 - [Guild Wars Wiki](https://wiki.guildwars.com/) - Game information
-- [Model IDs & Constants](../5-Constants-Reference/) - Item/skill IDs
+
+**Coming Soon:**
+- Model IDs & Constants - Item/skill IDs reference
 
 ---
 

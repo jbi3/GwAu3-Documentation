@@ -690,7 +690,10 @@ Subsequent scans reuse cached patterns without re-searching for strings.
 
 - **[Architecture Overview](Overview.md)** - How scanner fits in overall system
 - **[Memory System](Memory-System.md)** - Memory operations used by scanner
-- **[Assembler System](../3-Core-Systems/Assembler.md)** - Uses scanner results for code injection
+- **[Core Functions](../3-Core-Systems/Core-Functions.md)** - Scanner and memory functions reference
+
+**Coming Soon:**
+- Assembler System - Uses scanner results for code injection
 
 ---
 

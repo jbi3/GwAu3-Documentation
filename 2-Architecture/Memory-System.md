@@ -682,7 +682,10 @@ EndFunc
 
 - **[Architecture Overview](Overview.md)** - How memory system fits in
 - **[Scanner System](Scanner-System.md)** - Finding addresses
-- **[Assembler System](../3-Core-Systems/Assembler.md)** - Code injection
+- **[Core Functions](../3-Core-Systems/Core-Functions.md)** - Memory and scanner functions reference
+
+**Coming Soon:**
+- Assembler System - Code injection
 
 ---
 

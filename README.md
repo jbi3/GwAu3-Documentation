@@ -95,36 +95,6 @@ This documentation is designed to help you understand the GwAu3 framework from t
 
 ---
 
-## 🎯 Quick Navigation by Goal
-
-### "I want to create my first bot" ✅ *Ready!*
-1. Read [Quick Start Guide](1-Getting-Started/01-Quick-Start-Guide.md) - Get a bot running in 10 minutes
-2. Follow [First Bot Tutorial](1-Getting-Started/03-First-Bot-Tutorial.md) - Build a complete farming bot
-3. Study [Agent Module](4-Modules-Reference/Agent-Module.md) - Master entity targeting
-
-### "I need to understand how GwAu3 works" ✅ *Ready!*
-1. Start with [Architecture Overview](2-Architecture/Overview.md) - How everything fits together
-2. Read about [Memory System](2-Architecture/Memory-System.md) - How memory reading/writing works
-3. Understand [Scanner System](2-Architecture/Scanner-System.md) - Pattern scanning explained
-4. Learn [Module Structure](2-Architecture/Module-Structure.md) - How modules are organized
-
-### "I'm looking for a specific function" ✅ *5 Priority Modules Ready!*
-- Check [Agent Module](4-Modules-Reference/Agent-Module.md) for targeting/agent functions
-- Check [Skill Module](4-Modules-Reference/Skill-Module.md) for skill usage and skillbar management
-- Check [Map Module](4-Modules-Reference/Map-Module.md) for movement and travel functions
-- Check [Item Module](4-Modules-Reference/Item-Module.md) for inventory and item management
-- Check [Player & Party](4-Modules-Reference/Player-Party-Modules.md) for character info and hero management
-- Check [Core Functions](3-Core-Systems/Core-Functions.md) for low-level API
-- 20+ additional modules coming soon (Chat, Trade, Quest, Title, etc.)
-
-### "I want to build something advanced" 📝 *Coming Soon*
-1. Master the basics first (Getting Started + Architecture sections)
-2. Study the 5 priority modules (Agent, Skill, Map, Item, Player & Party)
-3. Study existing bots in `/Scripts` directory
-4. Advanced Systems documentation (Pathfinding, SmartCast) coming soon
-
----
-
 ## 📚 Documentation Conventions
 
 ### Document Headers
