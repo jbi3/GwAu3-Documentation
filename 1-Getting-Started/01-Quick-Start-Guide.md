@@ -540,14 +540,11 @@ Look at example bots in the `Scripts/` folder to learn advanced techniques:
 - See how agents and targets are managed
 - Learn skillbar and inventory management patterns
 
-**Tip**: Read existing code to understand best practices!
-
 ---
 
 ### Join the Community
 
-- **GwAu3 Discord** - Get help and share bots
-- **Read CONTRIBUTING.md** - Learn how to contribute
+- **GwAu3 - Reforged Discord** - Get help and share bots
 - **Study documentation** - Deep dive into modules
 
 ---
