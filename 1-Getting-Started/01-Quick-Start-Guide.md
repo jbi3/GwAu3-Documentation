@@ -112,9 +112,9 @@ Open `MyBot.au3` in AutoIt editor (SciTE) and paste this code:
 ; ===================================================================
 
 ; AutoIt compiler directives
-#include-once
-#RequireAdmin
-#NoTrayIcon
+#include-once                ; Prevent duplicate includes
+;#RequireAdmin               ; Optional - Uncomment if you get "Access Denied" errors
+;#NoTrayIcon                ; Optional - Uncomment to hide tray icon
 
 ; Include GwAu3 library (adjust path to point to API folder)
 #include "..\..\API\_GwAu3.au3"
@@ -265,16 +265,18 @@ Make sure your script header looks like this with all directives and includes:
 
 ```autoit
 ; AutoIt compiler directives
-#include-once
-#RequireAdmin
-#NoTrayIcon
+#include-once                ; Prevent duplicate includes
+;#RequireAdmin               ; Optional - Uncomment if you get "Access Denied" errors
+;#NoTrayIcon                ; Optional - Uncomment to hide tray icon
 
 ; Include GwAu3 library
 #include "..\..\API\_GwAu3.au3"
 #include <Misc.au3>  ; For _IsPressed() function
 ```
 
-The `_IsPressed()` function (used for ESC key detection) requires the Misc.au3 library.
+**Note**: 
+- The `_IsPressed()` function (used for ESC key detection) requires the Misc.au3 library.
+- Uncomment `#RequireAdmin` (remove the `;`) if you get errors about access denied or if the bot fails to initialize.
 
 ---
 
@@ -285,27 +287,34 @@ Let's break down what this bot does:
 ### Script Directives
 
 ```autoit
-#include-once
-#RequireAdmin
-#NoTrayIcon
+#include-once                ; Prevent duplicate includes
+;#RequireAdmin               ; Optional - Uncomment if you get "Access Denied" errors
+;#NoTrayIcon                ; Optional - Uncomment to hide tray icon
 ```
 
 **What they do**:
 
-**`#include-once`**: Prevents this file from being included multiple times
-- Best practice for any AutoIt script
+**`#include-once`**: ✅ **Best Practice**
+- Prevents this file from being included multiple times
 - Avoids "duplicate function" errors
+- Always use this in your scripts
 
-**`#RequireAdmin`**: Forces script to run with administrator privileges
-- **REQUIRED** for GwAu3 bots to work
-- Needed to access Guild Wars process memory
-- Will show UAC prompt when script starts
+**`#RequireAdmin`**: 📋 **Recommended**
+- Forces script to run with administrator privileges
+- GwAu3 needs admin access to read/write Guild Wars memory
+- Shows UAC prompt if not already running as admin
+- **Optional if you're already running SciTE/AutoIt as administrator**
+- Recommended for deployment to ensure bot works for all users
 
-**`#NoTrayIcon`**: Hides the AutoIt tray icon
-- Keeps system tray clean
-- Bot runs without showing green "H" icon in taskbar
+**`#NoTrayIcon`**: 📝 **Optional**
+- Hides the AutoIt green "H" tray icon in taskbar
+- Keeps system tray clean when running multiple bots
+- Not needed for this first bot (commented out)
+- Uncomment (remove `;`) if you want to use it
 
-**Why RequireAdmin is essential**: GwAu3 needs to read/write Guild Wars memory, which requires admin rights. Without this, `Core_Initialize()` will fail.
+**Note**: For this first bot, both `#RequireAdmin` and `#NoTrayIcon` are commented out. Uncomment them based on your needs:
+- Uncomment `#RequireAdmin` if you get "Access Denied" errors (needed if not running as admin)
+- Uncomment `#NoTrayIcon` if you want to hide the tray icon
 
 ### Initialization Section
 
@@ -411,10 +420,9 @@ Local $enemy = Agent_TargetNearestEnemy(1200)
 **From SciTE Editor**
 1. Open `MyBot.au3` in SciTE (AutoIt editor)
 2. Press **F5** to run
-3. **Allow administrator access** when Windows UAC prompts you (click "Yes")
-4. Watch the console output
+3. Watch the console output
 
-**Note**: The UAC prompt appears because `#RequireAdmin` directive requests administrator privileges, which are required for GwAu3 to access Guild Wars memory.
+**Note**: If you uncommented `#RequireAdmin`, Windows will show a UAC prompt - click "Yes" to allow admin access. This is needed for the bot to access Guild Wars memory.
 
 ### Step 3: Watch It Work!
 
@@ -443,19 +451,19 @@ Attacking with skill 1...
 
 ## Troubleshooting
 
-### "Failed to initialize!"
+### "Failed to initialize!" or "Access Denied"
 
 **Possible causes**:
 1. Guild Wars not running
 2. Character name doesn't match
 3. Not logged in to character yet
 4. AutoIt is 64-bit instead of 32-bit
-5. Script not running as administrator
+5. Insufficient permissions to access Guild Wars memory
 
 **Solution**:
 - Verify character name exactly matches
 - Make sure you're in-game, not character select
-- **Allow UAC prompt** when script starts (click "Yes")
+- **If you get access errors**: Uncomment `#RequireAdmin` in the script
 - Reinstall AutoIt 32-bit if needed
 
 ### "No enemies found"
@@ -575,8 +583,8 @@ Look at example bots in the `Scripts/` folder to learn advanced techniques:
 ```autoit
 ; === SCRIPT SETUP ===
 #include-once                             ; Prevent duplicate includes
-#RequireAdmin                            ; REQUIRED for GwAu3
-#NoTrayIcon                              ; Hide tray icon
+;#RequireAdmin                            ; Uncomment if access denied errors
+;#NoTrayIcon                              ; Optional - hide tray icon
 #include "..\..\API\_GwAu3.au3"
 #include <Misc.au3>                      ; For _IsPressed()
 
