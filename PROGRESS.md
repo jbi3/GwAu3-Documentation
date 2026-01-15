@@ -12,10 +12,10 @@
 ```
 
 **Completed**: All foundation sections + 5 priority modules documented!
-- Architecture (6/6) ✅
-- Getting Started (4/4) ✅  
-- Core Systems (2/5) 🔄
-- Modules (6/25+) ✅
+- Architecture (5/5) ✅
+- Getting Started (3/3) ✅  
+- Core Systems (1/4) 🔄
+- Modules (5/25+) ✅
 - Constants (0/5+) 📝
 - Advanced Systems (0/4+) 📝
 - Learning Guides (0/5+) 📝
@@ -28,31 +28,35 @@
 - ✅ **Documentation folder structure** - All directories created
 - ✅ **Documentation/README.md** - Main navigation hub complete
 
-### Architecture (6 / 6 files) ✅ **COMPLETE**
-- ✅ **2-Architecture/README.md** - Architecture navigation and reading order
+### Architecture (5 / 5 files) ✅ **COMPLETE**
 - ✅ **2-Architecture/Overview.md** - Comprehensive architecture overview
 - ✅ **2-Architecture/Memory-System.md** - Memory management deep dive
 - ✅ **2-Architecture/Packet-System.md** - Command and packet system
 - ✅ **2-Architecture/Scanner-System.md** - Pattern scanning explained
 - ✅ **2-Architecture/Module-Structure.md** - Module organization
 
-### Core Systems (2 / 5 files)
-- ✅ **3-Core-Systems/README.md** - Core Systems navigation and overview
+*Plus: README.md for navigation*
+
+### Core Systems (1 / 4 files)
 - ✅ **3-Core-Systems/Core-Functions.md** - Core API reference complete
 
-### Getting Started (4 / 4 files) ✅ **COMPLETE**
-- ✅ **1-Getting-Started/README.md** - Getting Started navigation
+*Plus: README.md for navigation*
+
+### Getting Started (3 / 3 files) ✅ **COMPLETE**
 - ✅ **1-Getting-Started/01-Quick-Start-Guide.md** - 10-minute first bot
 - ✅ **1-Getting-Started/02-Core-Initialization.md** - Initialization deep dive
 - ✅ **1-Getting-Started/03-First-Bot-Tutorial.md** - Complete farming bot tutorial
 
-### Priority Modules (6 / 6 files) ✅ **COMPLETE**
-- ✅ **4-Modules-Reference/README.md** - Module Reference navigation and quick reference
+*Plus: README.md for navigation*
+
+### Priority Modules (5 / 5 files) ✅ **COMPLETE**
 - ✅ **4-Modules-Reference/Agent-Module.md** - Complete Agent Cmd + Data
 - ✅ **4-Modules-Reference/Skill-Module.md** - Complete Skill Cmd + Data (1300+ lines!)
 - ✅ **4-Modules-Reference/Map-Module.md** - Complete Map Cmd + Data  
 - ✅ **4-Modules-Reference/Item-Module.md** - Complete Item/Inventory Cmd + Data
 - ✅ **4-Modules-Reference/Player-Party-Modules.md** - Complete Player + Party modules
+
+*Plus: README.md for navigation*
 
 ---
 
