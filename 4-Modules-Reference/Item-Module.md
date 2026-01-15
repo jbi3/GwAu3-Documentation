@@ -37,10 +37,11 @@ The **Item Module** provides functions for:
 ### 1. Pick Up Loot
 
 ```autoit
-; Find nearest item on ground
-Local $item = Item_GetNearestItemInRange(1500)
-
-If $item Then
+; Find item agent on ground (use Agent module to find item agents)
+Local $agents = Agent_GetAgentArray(0x400)  ; 0x400 = Item type
+If IsArray($agents) And $agents[0] > 0 Then
+    Local $item = $agents[1]  ; Get first item
+    
     ; Move to item
     Local $itemX = Agent_GetAgentInfo($item, "X")
     Local $itemY = Agent_GetAgentInfo($item, "Y")
@@ -132,7 +133,7 @@ Item_MoveItem($item, $bag, $slot)          ; Move item
 
 ; === FINDING ITEMS ===
 Item_FindItemByModelID($modelID)           ; Find by model ID
-Item_GetNearestItemInRange($range)         ; Nearest item on ground
+Item_FindItemByAgentID($agentID)           ; Find item by agent ID
 
 ; === GOLD ===
 Item_GetInventoryInfo("GoldCharacter")     ; Character gold
@@ -595,36 +596,6 @@ EndIf
 Local $sword = Item_FindItemByModelID(15540)
 ```
 
-### Item_GetNearestItemInRange
-
-Find nearest item on ground within range.
-
-**Signature:**
-```autoit
-Item_GetNearestItemInRange($a_f_Range)
-```
-
-**Parameters:**
-- `$a_f_Range` - Maximum distance
-
-**Returns:**
-- Agent ID of nearest item (or 0)
-
-**Example:**
-```autoit
-; Find loot within 1500 range
-Local $item = Item_GetNearestItemInRange(1500)
-
-If $item Then
-    ; Move to and pick up
-    Local $itemX = Agent_GetAgentInfo($item, "X")
-    Local $itemY = Agent_GetAgentInfo($item, "Y")
-    Map_Move($itemX, $itemY)
-    Sleep(1000)
-    Item_PickUpItem($item)
-EndIf
-```
-
 ### Item_FindItemByAgentID
 
 Find item ID from agent ID.
@@ -709,8 +680,20 @@ EndFunc
 ```autoit
 Func CollectLoot()
     While True
-        ; Find nearest item
-        Local $item = Item_GetNearestItemInRange(1500)
+        ; Find nearest item on ground
+        Local $item = 0
+        Local $minDist = 1500
+        Local $agents = Agent_GetAgentArray(0x400)  ; 0x400 = Item type
+        
+        If IsArray($agents) And $agents[0] > 0 Then
+            For $i = 1 To $agents[0]
+                Local $dist = Agent_GetDistance($agents[$i])
+                If $dist > 0 And $dist < $minDist Then
+                    $item = $agents[$i]
+                    $minDist = $dist
+                EndIf
+            Next
+        EndIf
         
         If $item = 0 Then
             ConsoleWrite("No more loot found" & @CRLF)

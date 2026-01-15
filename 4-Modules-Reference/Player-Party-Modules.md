@@ -44,6 +44,20 @@ ConsoleWrite("Playing as: " & $name & @CRLF)
 Log_Info("Bot started on character: " & Player_GetCharname())
 ```
 
+### Player_CampaignCharacter
+
+Get campaign character information.
+
+**Signature:**
+```autoit
+Player_CampaignCharacter()
+```
+
+**Returns:**
+- Campaign character data (integer)
+
+**Reference:** Based on `API/Modules/Data/GwAu3_Data_Player.au3:8-10`
+
 ## Party Module Overview
 
 The **Party Module** provides functions for:
@@ -58,6 +72,7 @@ The **Party Module** provides functions for:
 ```autoit
 ; === PLAYER ===
 Player_GetCharname()                       ; Get character name
+Player_CampaignCharacter()                 ; Get campaign character data
 
 ; === HEROES ===
 Party_AddHero($heroID)                     ; Add hero to party
@@ -357,6 +372,61 @@ Kick a henchman.
 Party_KickNpc($a_i_NpcId)
 ```
 
+### Party_SetTickToggle
+
+Toggle party ticks (checkmarks) on/off.
+
+**Signature:**
+```autoit
+Party_SetTickToggle()
+```
+
+**Example:**
+```autoit
+Party_SetTickToggle()  ; Toggle ticks
+```
+
+**Reference:** Based on `API/Modules/Cmd/GwAu3_Cmd_Party.au3:86-88`
+
+### Party_GetPlayerAgentID
+
+Get a player's agent ID by their index.
+
+**Signature:**
+```autoit
+Party_GetPlayerAgentID($a_i_PlayerNumber)
+```
+
+**Parameters:**
+- `$a_i_PlayerNumber` - Player index (1-based)
+
+**Returns:**
+- Agent ID of player (0 if not found)
+
+**Example:**
+```autoit
+Local $player1 = Party_GetPlayerAgentID(1)  ; Get first player
+If $player1 Then
+    ConsoleWrite("Player 1 Agent ID: " & $player1 & @CRLF)
+EndIf
+```
+
+**Reference:** Based on `API/Modules/Cmd/GwAu3_Cmd_Party.au3:90-98`
+
+### Party_GetPartyLoadout
+
+Get current party loadout information.
+
+**Signature:**
+```autoit
+Party_GetPartyLoadout()
+```
+
+**Returns:**
+- Array with party loadout data
+
+**Reference:** Based on `API/Modules/Cmd/GwAu3_Cmd_Party.au3:100-102`
+
 ## Party Information
 
 ### Party_GetPartyContextInfo
@@ -413,6 +483,16 @@ If Party_GetPartyContextInfo("IsDefeated") Then
 EndIf
 ```
 
+**"IsSearchBattleMode"** - In search/battle mode?
+**"PartyID"** - Party ID
+**"Flags"** - Party context flags
+**"IsTicked"** - Are party ticks enabled?
+**"HeroFlagPtr"** - Hero flag pointer
+**"HeroFlagCount"** - Hero flag count
+**"PvpMatchID"** - PvP match ID
+
+**Reference:** Based on `API/Modules/Data/GwAu3_Data_Party.au3:14-81`
+
 ### Party_GetMyPartyHeroInfo
 
 Get information about a specific hero.
@@ -444,6 +524,41 @@ EndIf
 ```autoit
 Local $level = Party_GetMyPartyHeroInfo(1, "Level")
 ```
+
+**"OwnerPlayerNumber"** - Owner player number
+```autoit
+Local $owner = Party_GetMyPartyHeroInfo(1, "OwnerPlayerNumber")
+```
+
+**Reference:** Based on `API/Modules/Data/GwAu3_Data_Party.au3:163-173`
+
+### Party_GetMyPartyHenchmanInfo
+
+Get information about a specific henchman.
+
+**Signature:**
+```autoit
+Party_GetMyPartyHenchmanInfo($a_i_HenchmanNumber = 1, $a_s_Info = "")
+```
+
+**Common Info Types:**
+
+**"AgentID"** - Henchman's agent ID
+```autoit
+Local $henchID = Party_GetMyPartyHenchmanInfo(1, "AgentID")
+```
+
+**"Profession"** - Henchman's profession
+```autoit
+Local $prof = Party_GetMyPartyHenchmanInfo(1, "Profession")
+```
+
+**"Level"** - Henchman's level
+```autoit
+Local $level = Party_GetMyPartyHenchmanInfo(1, "Level")
+```
+
+**Reference:** Based on `API/Modules/Data/GwAu3_Data_Party.au3:187-194`
 
 ### Party_GetMoraleInfo
 

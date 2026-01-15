@@ -251,6 +251,55 @@ Local $lastPos = Map_GetLastMoveCoords()
 ConsoleWrite("Last move: X=" & $lastPos[0] & " Y=" & $lastPos[1] & @CRLF)
 ```
 
+**Reference:** Based on `API/Modules/Data/GwAu3_Data_Map.au3:14-17`
+
+### Map_GetClickCoords
+
+Get coordinates where you last clicked to move.
+
+**Signature:**
+```autoit
+Map_GetClickCoords()
+```
+
+**Returns:**
+- Array `[X, Y]` - Click coordinates
+
+**Example:**
+```autoit
+Local $clickPos = Map_GetClickCoords()
+ConsoleWrite("Clicked: X=" & $clickPos[0] & " Y=" & $clickPos[1] & @CRLF)
+```
+
+**Reference:** Based on `API/Modules/Data/GwAu3_Data_Map.au3:19-24`
+
+### Map_GetRegion
+
+Get current region/server.
+
+**Signature:**
+```autoit
+Map_GetRegion()
+```
+
+**Returns:**
+- Region ID (integer)
+
+**Region IDs:**
+- `-2` - America
+- `1` - International
+- `2` - Europe
+- `3` - Korea
+- `4` - China/Taiwan
+
+**Example:**
+```autoit
+Local $region = Map_GetRegion()
+ConsoleWrite("Current region: " & $region & @CRLF)
+```
+
+**Reference:** Based on `API/Modules/Data/GwAu3_Data_Map.au3:10-12`
+
 ## Map Travel
 
 ### Map_TravelTo
@@ -584,21 +633,47 @@ Local $campaign = Map_GetCurrentAreaInfo("Campaign")
 ; 0=Prophecies, 1=Factions, 2=Nightfall, 3=EotN
 ```
 
-**"Region"** - Geographic region
 **"Continent"** - Continent ID
+```autoit
+Local $continent = Map_GetCurrentAreaInfo("Continent")
+```
+
+**"Region"** - Geographic region ID
+```autoit
+Local $region = Map_GetCurrentAreaInfo("Region")
+```
+
 **"RegionType"** - Type of area
 ```autoit
 Local $type = Map_GetCurrentAreaInfo("RegionType")
 ; 0=Alliance Battle, 2=Explorable, 4=Guild Hall, 10=Outpost, etc.
 ```
 
-**"MaxPartySize"** - Maximum party size
+**"ThumbnailID"** - Map thumbnail ID
+**"MinPartySize"** / **"MaxPartySize"** - Party size limits
 ```autoit
 Local $maxParty = Map_GetCurrentAreaInfo("MaxPartySize")
 ; 4, 8, 12, etc.
 ```
 
+**"MinPlayerSize"** / **"MaxPlayerSize"** - Player limits
+**"ControlledOutpostID"** - Controlled outpost ID
+**"FractionMission"** - Faction mission info
 **"MinLevel"** / **"MaxLevel"** - Level requirements
+**"NeededPQ"** - Required quest
+**"MissionMapsTo"** - Linked mission map ID
+
+**"X"** / **"Y"** - Map coordinates
+```autoit
+Local $x = Map_GetCurrentAreaInfo("X")
+Local $y = Map_GetCurrentAreaInfo("Y")
+```
+
+**"IconStartX"** / **"IconStartY"** - Icon start position
+**"IconEndX"** / **"IconEndY"** - Icon end position
+**"FileID"** - Map file ID
+**"MissionChronology"** - Mission order
+**"HAMapChronology"** - Heroes' Ascent chronology
 **"NameID"** - Map name string ID
 **"DescriptionID"** - Map description string ID
 
@@ -674,21 +749,30 @@ Map_GetCharacterInfo($a_s_Info = "")
 
 **Common Info Types:**
 
+**"PlayerUUID"** - Player unique identifier (array)
+```autoit
+Local $uuid = Map_GetCharacterInfo("PlayerUUID")
+; Returns array of 4 long values
+```
+
+**"PlayerName"** - Your account name
+```autoit
+Local $name = Map_GetCharacterInfo("PlayerName")
+```
+
+**"WorldFlags"** - World flags
+**"Token1"** - World ID token
 **"MapID"** - Current map ID
 ```autoit
 Local $mapID = Map_GetCharacterInfo("MapID")
 ```
 
+**"IsExplorable"** - In explorable? (alternative check)
+**"Token2"** - Player ID token
 **"DistrictNumber"** - Current district
 ```autoit
 Local $district = Map_GetCharacterInfo("DistrictNumber")
 ConsoleWrite("District: " & $district & @CRLF)
-```
-
-**"Region"** - Current region
-```autoit
-Local $region = Map_GetCharacterInfo("Region")
-; -2=America, 1=Int, 2=Europe, 3=Korea, 4=China
 ```
 
 **"Language"** - Current language
@@ -697,12 +781,19 @@ Local $lang = Map_GetCharacterInfo("Language")
 ; 0=English, 2=French, 3=German, etc.
 ```
 
-**"PlayerName"** - Your account name
+**"Region"** - Current region
 ```autoit
-Local $name = Map_GetCharacterInfo("PlayerName")
+Local $region = Map_GetCharacterInfo("Region")
+; -2=America, 1=Int, 2=Europe, 3=Korea, 4=China
 ```
 
-**"IsExplorable"** - In explorable? (alternative check)
+**"ObserveMapID"** - Observed map ID
+**"CurrentMapID"** - Current map ID (alternative)
+**"ObserveMapType"** - Observed map type
+**"CurrentMapType"** - Current map type
+**"ObserverMatch"** - Observer match pointer
+**"PlayerFlags"** - Player flags
+**"PlayerNumber"** - Player number
 
 ## Area Database Queries
 
