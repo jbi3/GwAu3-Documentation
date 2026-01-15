@@ -235,8 +235,15 @@ Func Agent_GoNPC($a_v_Agent)
 
 **Example**:
 ```autoit
-; Find and talk to merchant
-$merchant = Agent_FindNearestByModelID($GC_I_MODEL_MERCHANT)
+; Find and talk to merchant by model ID
+$merchant = 0
+For $i = 1 To Agent_GetMaxAgents()
+    If Agent_GetAgentInfo($i, "PlayerNumber") = $merchantModelID Then
+        $merchant = $i
+        ExitLoop
+    EndIf
+Next
+
 If $merchant > 0 Then
     Agent_GoNPC($merchant)
 EndIf
@@ -258,8 +265,12 @@ Func Agent_GoSignpost($a_v_Agent)
 **Example**:
 ```autoit
 ; Use signpost to travel
-$signpost = Agent_FindNearestByModelID($GC_I_MODEL_SIGNPOST)
-Agent_GoSignpost($signpost)
+For $i = 1 To Agent_GetMaxAgents()
+    If Agent_GetAgentInfo($i, "IsGadgetType") Then
+        Agent_GoSignpost($i)
+        ExitLoop
+    EndIf
+Next
 ```
 
 ### Agent_Attack
@@ -432,24 +443,62 @@ $modelID = Agent_GetAgentInfo($npcID, "PlayerNumber")  ; NPC model
 | `X` | Float | X coordinate |
 | `Y` | Float | Y coordinate |
 | `Z` | Float | Z coordinate (height) |
+| `Plane` | Integer | Plane/floor level |
 | `MoveX` | Float | Movement target X |
 | `MoveY` | Float | Movement target Y |
 | `Rotation` | Float | Rotation angle |
-| `RotationCos` | Float | Cos of rotation |
-| `RotationSin` | Float | Sin of rotation |
+| `RotationCos` | Float | Cosine of rotation |
+| `RotationSin` | Float | Sine of rotation |
+| `RotationCos2` | Float | Cosine of rotation 2 |
+| `RotationSin2` | Float | Sine of rotation 2 |
+| `NameTagX` | Float | Name tag X position |
+| `NameTagY` | Float | Name tag Y position |
+| `NameTagZ` | Float | Name tag Z position |
+| `Width1` | Float | Width dimension 1 |
+| `Height1` | Float | Height dimension 1 |
+| `Width2` | Float | Width dimension 2 |
+| `Height2` | Float | Height dimension 2 |
+| `Width3` | Float | Width dimension 3 |
+| `Height3` | Float | Height dimension 3 |
 
 ### Health & Energy
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `HP` | Float | Health percent (0.0-1.0) |
-| `EnergyPercent` | Float | Energy percent (0.0-1.0) |
-| `CurrentEnergy` | Float | Current energy points (EnergyPercent × MaxEnergy) |
+| `HPPercent` | Float | Alias for HP |
 | `MaxHP` | Integer | Maximum health points |
-| `MaxEnergy` | Integer | Maximum energy points |
 | `CurrentHP` | Float | Current health points (HP × MaxHP) |
+| `HPPips` | Float | Health regeneration pips |
+| `HPRegen` | Float | Alias for HPPips |
+| `EnergyPercent` | Float | Energy percent (0.0-1.0) |
+| `MaxEnergy` | Integer | Maximum energy points |
+| `CurrentEnergy` | Float | Current energy points (EnergyPercent × MaxEnergy) |
+| `EnergyPips` | Float | Energy regeneration pips |
+| `EnergyRegen` | Float | Alias for EnergyPips |
+| `Overcast` | Float | Overcast value |
 | `IsDead` | Boolean | Is agent dead? |
 | `IsKnocked` | Boolean | Is knocked down? |
+| `IsKnockedDown` | Boolean | Alias for IsKnocked |
+
+### Conditions & Effects
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `Effects` | Integer | Effects bitfield |
+| `IsBleeding` | Boolean | Has bleeding condition? |
+| `IsConditioned` | Boolean | Has any condition? |
+| `IsCrippled` | Boolean | Is crippled? |
+| `IsDeepWounded` | Boolean | Has deep wound? |
+| `IsPoisoned` | Boolean | Is poisoned? |
+| `IsEnchanted` | Boolean | Has enchantment? |
+| `IsDegenHexed` | Boolean | Has degen hex? |
+| `IsHexed` | Boolean | Has hex? |
+| `IsWeaponSpelled` | Boolean | Has weapon spell? |
+| `EffectCount` | Integer | Number of effects on agent |
+| `BuffCount` | Integer | Number of buffs on agent |
+| `VisibleEffectCount` | Integer | Number of visible effects |
+| `HasVisibleEffects` | Boolean | Has any visible effects? |
 
 ### Identity & Type
 
@@ -457,76 +506,115 @@ $modelID = Agent_GetAgentInfo($npcID, "PlayerNumber")  ; NPC model
 |-------|------|-------------|
 | `ID` | Integer | Agent ID |
 | `Type` | Integer | Agent type (0xDB/0x400/0x200) |
-| `IsLivingType` | Boolean | Is living creature? |
-| `IsItemType` | Boolean | Is item? |
-| `IsGadgetType` | Boolean | Is gadget/object? |
+| `IsLivingType` | Boolean | Is living creature? (Type = 0xDB) |
+| `IsItemType` | Boolean | Is item? (Type = 0x400) |
+| `IsGadgetType` | Boolean | Is gadget/object? (Type = 0x200) |
 | `PlayerNumber` | Integer | Model/NPC ID |
+| `AgentModelType` | Integer | Agent model type |
+| `TransmogNpcId` | Integer | Transmogrified NPC ID |
 | `Owner` | Integer | Owner agent ID (for items) |
+| `CanPickUp` | Boolean | Can this item be picked up? |
+| `ItemID` | Integer | Item model ID (for items) |
+| `ExtraType` | Integer | Extra type information |
+| `GadgetID` | Integer | Gadget ID (for gadgets) |
+| `LoginNumber` | Integer | Login number (0 = NPC) |
+| `IsPlayer` | Boolean | Is a player? (LoginNumber > 0) |
+| `IsNPC` | Boolean | Is an NPC? (LoginNumber = 0) |
+| `IsFemale` | Boolean | Is female character? |
+| `HasBossGlow` | Boolean | Has boss glow effect? |
+| `HasQuest` | Boolean | Has available quest? |
 
 ### Combat & Status
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `Allegiance` | Integer | 1=Ally, 2=Neutral, 3=Enemy |
-| `Profession` | Integer | Primary profession |
-| `ProfessionSecond` | Integer | Secondary profession |
+| `Primary` | Integer | Primary profession |
+| `Secondary` | Integer | Secondary profession |
 | `Level` | Integer | Agent level |
+| `Team` | Integer | Team number |
+| `ModelState` | Integer | Model state code |
 | `IsMoving` | Boolean | Currently moving? |
 | `IsCasting` | Boolean | Currently casting? |
 | `IsIdle` | Boolean | Is idle? |
 | `IsAttacking` | Boolean | Is attacking? |
+| `InCombatStance` | Boolean | In combat stance? |
+| `Skill` | Integer | Currently casting skill ID |
+| `WeaponType` | Integer | Equipped weapon type |
+| `WeaponItemType` | Integer | Weapon item type |
+| `OffhandItemType` | Integer | Offhand item type |
+| `WeaponItemId` | Integer | Weapon item ID |
+| `OffhandItemId` | Integer | Offhand item ID |
+| `Equipment` | Pointer | Equipment structure pointer |
+| `AttackSpeed` | Float | Attack speed |
+| `AttackSpeedModifier` | Float | Attack speed modifier |
+| `LastStrike` | Integer | Last strike value |
 
-### Distances
+### Animation & Visual
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `Distance` | Float | Distance from you |
+| `AnimationType` | Float | Animation type |
+| `AnimationSpeed` | Float | Animation playback speed |
+| `AnimationCode` | Integer | Animation code |
+| `AnimationId` | Integer | Animation ID |
+| `VisualEffects` | Integer | Visual effects bitfield |
+| `TypeMap` | Integer | Type map flags |
+| `IsSpawned` | Boolean | Is spawned/visible? |
+| `IsBeingObserved` | Boolean | Is being observed? |
+| `CanBeViewedInPartyWindow` | Boolean | Can be viewed in party window? |
+| `IsHidingCap` | Boolean | Is hiding headgear? |
+| `InSpiritRange` | Integer | In spirit range? |
+| `VisibleEffectsPtr` | Pointer | Visible effects list pointer |
+| `VisibleEffectsPrevLink` | Pointer | Previous visible effect link |
+| `VisibleEffectsNextNode` | Pointer | Next visible effect node |
+
+### Additional Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `Tags` | Integer | Agent tags |
+| `NameProperties` | Integer | Name properties flags |
+| `Ground` | Integer | Ground information |
+| `TerrainNormalX` | Float | Terrain normal X |
+| `TerrainNormalY` | Float | Terrain normal Y |
+| `TerrainNormalZ` | Integer | Terrain normal Z |
 
 ## Helper Functions
 
 ### Agent_GetDistance
 
-**Calculates distance between two agents.**
+**Calculates distance from you to an agent (or between two agents).**
 
 ```autoit
-Func Agent_GetDistance($a_i_AgentID1, $a_i_AgentID2 = -2)
+Func Agent_GetDistance($a_i_Agent1ID, $a_i_Agent2ID = -2)
 ```
 
-**Parameters**:
-- `$a_i_AgentID1` - First agent
-- `$a_i_AgentID2` - Second agent (default: -2 = you)
+**Source**: `API/Modules/Data/GwAu3_Data_Agent.au3:691-700`
 
-**Returns**: Distance (float)
+**Parameters**:
+- `$a_i_Agent1ID` - First agent
+- `$a_i_Agent2ID` - Second agent (default: -2 = you)
+
+**Returns**: Distance in game units (float)
+
+**Implementation**:
+```autoit
+; From API code (lines 691-700)
+Local $l_f_X1 = Agent_GetAgentInfo($a_i_Agent1ID, "X")
+Local $l_f_Y1 = Agent_GetAgentInfo($a_i_Agent1ID, "Y")
+Local $l_f_X2 = Agent_GetAgentInfo($a_i_Agent2ID, "X")
+Local $l_f_Y2 = Agent_GetAgentInfo($a_i_Agent2ID, "Y")
+Return Sqrt(($l_f_X1 - $l_f_X2)^2 + ($l_f_Y1 - $l_f_Y2)^2)
+```
 
 **Example**:
 ```autoit
+; Distance from you to enemy
 $distance = Agent_GetDistance($enemyID)
-If $distance < 500 Then
-    ConsoleWrite("Enemy is close!" & @CRLF)
-EndIf
-```
 
-### Agent_FindNearestByModelID
-
-**Finds nearest agent with specific model ID.**
-
-```autoit
-Func Agent_FindNearestByModelID($a_i_ModelID, $a_f_MaxDistance = 5000)
-```
-
-**Parameters**:
-- `$a_i_ModelID` - Model/NPC ID to search for
-- `$a_f_MaxDistance` - Maximum distance (default: 5000)
-
-**Returns**: Agent ID of nearest match, or 0
-
-**Example**:
-```autoit
-; Find nearest merchant (model 2048 example)
-$merchant = Agent_FindNearestByModelID(2048)
-If $merchant > 0 Then
-    Agent_GoNPC($merchant)
-EndIf
+; Distance between two agents
+$distance = Agent_GetDistance($agent1, $agent2)
 ```
 
 ## Common Usage Patterns
@@ -634,8 +722,19 @@ EndFunc
 Core_Initialize("My Character")
 
 Func FindAndKillBoss($bossModelID)
-    ; Find boss
-    $boss = Agent_FindNearestByModelID($bossModelID, 10000)
+    ; Find boss by model ID
+    Local $boss = 0
+    For $i = 1 To Agent_GetMaxAgents()
+        Local $ptr = Agent_GetAgentPtr($i)
+        If $ptr = 0 Then ContinueLoop
+        
+        If Agent_GetAgentInfo($i, "PlayerNumber") = $bossModelID Then
+            If Agent_GetDistance($i) < 10000 Then
+                $boss = $i
+                ExitLoop
+            EndIf
+        EndIf
+    Next
     
     If $boss = 0 Then
         ConsoleWrite("Boss not found!" & @CRLF)
