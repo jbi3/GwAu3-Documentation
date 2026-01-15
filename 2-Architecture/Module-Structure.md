@@ -4,8 +4,6 @@
 **Difficulty**: Beginner to Intermediate  
 **Prerequisites**: [Architecture Overview](Overview.md)
 
----
-
 ## 📖 Table of Contents
 
 1. [Introduction](#introduction)
@@ -17,8 +15,6 @@
 7. [Usage Examples](#usage-examples)
 8. [Complete Module List](#complete-module-list)
 
----
-
 ## Introduction
 
 GwAu3's API is organized into **modules** - logical groupings of related functions. This modular design makes the framework:
@@ -28,8 +24,6 @@ GwAu3's API is organized into **modules** - logical groupings of related functio
 - **Discoverable** - Predictable naming helps you find what you need
 
 **Total Modules**: 50 (25 Command + 25 Data)
-
----
 
 ## Module Organization
 
@@ -71,8 +65,6 @@ This automatically includes:
 - All command modules
 - All data modules
 
----
-
 ## Command vs Data Modules
 
 GwAu3 uses a clear separation between **commands** (actions) and **data** (information).
@@ -97,8 +89,6 @@ Chat_SendChat("Hello!")          ; SENDS a message
 
 **Pattern**: `ModuleName_ActionVerb(...)`
 
----
-
 ### Data Modules (`Data/`)
 
 **Purpose**: Retrieve information from the game.
@@ -119,8 +109,6 @@ $skillName = Skill_GetName(1)         ; GETS skill name
 
 **Pattern**: `ModuleName_GetInformation(...)`
 
----
-
 ### Why This Separation?
 
 ```autoit
@@ -138,8 +126,6 @@ Agent_GetPosition($id)     ; Obviously gets position
 - ✅ No accidental modifications
 - ✅ Easy to scan code and understand what it does
 - ✅ Predictable behavior
-
----
 
 ## Naming Conventions
 
@@ -179,8 +165,6 @@ Each function is prefixed with its module name:
 | `Trade_` | Trade | Trading and merchants |
 | ... and more | | |
 
----
-
 ### ID Conversion
 
 Many functions accept flexible ID inputs:
@@ -210,8 +194,6 @@ $hp = Agent_GetAgentInfo(Agent_GetMyID(), "HP")  ; Explicit ID
 $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 ```
 
----
-
 ## Module Categories
 
 ### 🎯 Entity & Targeting
@@ -220,8 +202,6 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 - **Command**: `Agent_ChangeTarget()`, `Agent_MakeAgentArray()`
 - **Data**: `Agent_GetAgentInfo()`, `Agent_GetMyID()`, `Agent_GetDistance()`
 - **Purpose**: Entity targeting, information, and management
-
----
 
 ### ⚔️ Combat
 
@@ -233,8 +213,6 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 **Effect Module** (`Effect_`)
 - **Data**: `Effect_GetEffectInfo()`, `Effect_GetEffectCount()`
 - **Purpose**: Buff/debuff monitoring
-
----
 
 ### 🎒 Inventory & Items
 
@@ -248,8 +226,6 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 - **Data**: `Merchant_GetItemInfo()`, `Merchant_GetPrice()`
 - **Purpose**: NPC merchant trading
 
----
-
 ### 🗺️ Movement & Travel
 
 **Map Module** (`Map_`)
@@ -261,8 +237,6 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 - **Command**: `Path_MoveTo()`, `Path_MoveToNPC()`
 - **Data**: `Path_GetDistance()`, `Path_IsPathable()`
 - **Purpose**: Pathfinding and navigation
-
----
 
 ### 👥 Party & Social
 
@@ -281,16 +255,12 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 - **Data**: `Guild_GetGuildInfo()`, `Guild_GetRank()`
 - **Purpose**: Guild operations
 
----
-
 ### 💬 Communication
 
 **Chat Module** (`Chat_`)
 - **Command**: `Chat_SendChat()`, `Chat_SendWhisper()`
 - **Data**: `Chat_GetLastMessage()`, `Chat_GetSenderName()`
 - **Purpose**: In-game messaging
-
----
 
 ### 🎮 Game State
 
@@ -306,8 +276,6 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 - **Command**: `Cinematic_Skip()`
 - **Data**: `Cinematic_IsActive()`
 - **Purpose**: Cutscene control
-
----
 
 ### 🏆 Progression
 
@@ -326,8 +294,6 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 - **Data**: `Attribute_GetAttributeInfo()`, `Attribute_GetAttributeRank()`
 - **Purpose**: Attribute point management
 
----
-
 ### 🖥️ UI & Interface
 
 **Ui Module** (`Ui_`)
@@ -345,16 +311,12 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 - **Data**: `PreGame_GetCharacterList()`, `PreGame_CharName()`
 - **Purpose**: Character selection screen
 
----
-
 ### 💼 Trading
 
 **Trade Module** (`Trade_`)
 - **Command**: `Trade_InitiateTrade()`, `Trade_OfferItem()`, `Trade_AcceptTrade()`
 - **Data**: `Trade_GetTradeInfo()`, `Trade_GetTradePartner()`
 - **Purpose**: Player-to-player trading
-
----
 
 ### 🌍 World & Environment
 
@@ -365,8 +327,6 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 **MapContext Module** (`MapContext_`)
 - **Data**: `MapContext_GetInfo()`, `MapContext_GetType()`
 - **Purpose**: Map context information
-
----
 
 ### ⚙️ Other
 
@@ -381,8 +341,6 @@ $hp = Agent_GetAgentInfo($myID, "HP")        ; Stored ID
 
 **Other Module** (`Other_`)
 - Various utility functions that don't fit elsewhere
-
----
 
 ## How Modules Work
 
@@ -438,8 +396,6 @@ If $currentTarget = 123 Then
 EndIf
 ```
 
----
-
 ### Example: Combining Modules
 
 **Task**: Find nearest enemy and attack with skill 1
@@ -464,16 +420,15 @@ If $enemyID > 0 Then
 EndIf
 ```
 
----
-
 ## Usage Examples
 
 ### Movement Example
 
 ```autoit
 ; Get current position (Data)
-Local $myPos = Agent_GetAgentInfo(-2, "Pos")
-ConsoleWrite("Current position: " & $myPos[0] & ", " & $myPos[1] & @CRLF)
+Local $myX = Agent_GetAgentInfo(-2, "X")
+Local $myY = Agent_GetAgentInfo(-2, "Y")
+ConsoleWrite("Current position: " & $myX & ", " & $myY & @CRLF)
 
 ; Move to new position (Command)
 Map_Move(1000, -500)
@@ -482,11 +437,10 @@ Map_Move(1000, -500)
 Sleep(1000)
 
 ; Verify position changed (Data)
-Local $newPos = Agent_GetAgentInfo(-2, "Pos")
-ConsoleWrite("New position: " & $newPos[0] & ", " & $newPos[1] & @CRLF)
+Local $newX = Agent_GetAgentInfo(-2, "X")
+Local $newY = Agent_GetAgentInfo(-2, "Y")
+ConsoleWrite("New position: " & $newX & ", " & $newY & @CRLF)
 ```
-
----
 
 ### Combat Example
 
@@ -508,8 +462,6 @@ WEnd
 ConsoleWrite("Skill recharged!" & @CRLF)
 ```
 
----
-
 ### Inventory Example
 
 ```autoit
@@ -527,8 +479,6 @@ Else
     ConsoleWrite("No bread found!" & @CRLF)
 EndIf
 ```
-
----
 
 ## Complete Module List
 
@@ -588,16 +538,12 @@ EndIf
 24. `GwAu3_Data_Ui.au3` - UI state
 25. `GwAu3_Data_World.au3` - World data
 
----
-
 ## Related Documentation
 
 - **[Architecture Overview](Overview.md)** - How modules fit into GwAu3
 - **[Packet System](Packet-System.md)** - How commands are executed
 - **[Command Modules Reference](../4-Modules-Reference/Cmd/)** - Detailed command docs
 - **[Data Modules Reference](../4-Modules-Reference/Data/)** - Detailed data docs
-
----
 
 ## Summary
 

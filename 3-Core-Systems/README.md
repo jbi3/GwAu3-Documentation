@@ -11,8 +11,6 @@
 
 This section provides detailed API reference for GwAu3's low-level systems - the foundation that all modules are built upon.
 
----
-
 ## 📖 Available Documentation
 
 ### ✅ Complete
@@ -23,8 +21,6 @@ Complete reference for core GwAu3 functions:
 - `Memory_*` functions - Memory operations
 - `Scanner_*` functions - Pattern scanning
 - `Core_Enqueue()` / `Core_SendPacket()` - Sending commands
-
----
 
 ### 📝 Coming Soon
 
@@ -37,8 +33,6 @@ Helper functions for managing arrays and DllStructs.
 **Updater** - Auto-update system  
 How GwAu3 automatically updates from GitHub.
 
----
-
 ## 📚 What You'll Learn
 
 After reading Core Functions, you'll understand:
@@ -47,8 +41,6 @@ After reading Core Functions, you'll understand:
 - ✅ How to scan for memory patterns
 - ✅ How to send commands to the game
 - ✅ Low-level API that modules are built upon
-
----
 
 ## 🔗 Related Documentation
 

@@ -4,8 +4,6 @@
 **Difficulty**: Intermediate  
 **Prerequisites**: [Architecture Overview](Overview.md), Basic understanding of pointers and memory
 
----
-
 ## 📖 Table of Contents
 
 1. [Introduction](#introduction)
@@ -19,8 +17,6 @@
 9. [Advanced Operations](#advanced-operations)
 10. [Function Reference](#function-reference)
 
----
-
 ## Introduction
 
 The Memory System (`GwAu3_Core_Memory.au3`) provides low-level memory read/write operations for interacting with the Guild Wars process. It's the foundation that all other GwAu3 systems build upon.
@@ -33,8 +29,6 @@ The Memory System (`GwAu3_Core_Memory.au3`) provides low-level memory read/write
 - Manages label/value associations
 
 **Why it's needed**: Guild Wars stores all game state in its memory. To read or modify this state, we need to access another process's memory space using Windows API functions.
-
----
 
 ## Core Concepts
 
@@ -80,8 +74,6 @@ Memory can be read/written as different types:
 | `float` | 4 bytes | Floating point | X/Y coordinates |
 | `double` | 8 bytes | Double precision | Rarely used |
 
----
-
 ## Process Attachment
 
 ### Opening Process
@@ -109,8 +101,6 @@ EndFunc
 - `$g_h_Kernel32` - Handle to kernel32.dll
 - `$g_h_GWProcess` - Handle to GW process
 
----
-
 ### Closing Process
 
 ```autoit
@@ -125,8 +115,6 @@ EndFunc
 2. Closes the DLL handle
 
 **When to use**: Always call this when your bot exits to prevent handle leaks.
-
----
 
 ## Reading Memory
 
@@ -168,8 +156,6 @@ $pointer = Memory_Read($pointerAddress, 'ptr')
 2. Calls `ReadProcessMemory` to copy data into buffer
 3. Returns the data from the buffer
 
----
-
 ### Reading Structures
 
 ```autoit
@@ -204,8 +190,6 @@ $x = DllStructGetData($agentStruct, "X")
 
 **When to use**: Reading complex structures is faster than multiple `Memory_Read()` calls.
 
----
-
 ## Writing Memory
 
 ### Basic Write
@@ -239,8 +223,6 @@ Memory_Write($xAddress, 1234.5, 'float')
 ; Write pointer
 Memory_Write($pointerAddress, $newAddress, 'ptr')
 ```
-
----
 
 ### Binary Write
 
@@ -280,8 +262,6 @@ Memory_WriteBinary("E9" & $jumpOffset, $hookAddress)
 ```
 
 **When to use**: Writing assembly code, patching game code, creating hooks.
-
----
 
 ## Pointer Chains
 
@@ -361,8 +341,6 @@ $ptr2 = Memory_Read($ptr1 + 0x04, 'ptr')
 $value = Memory_Read($ptr2 + 0x10, 'dword')
 ```
 
----
-
 ## Array Handling
 
 Guild Wars stores many collections as dynamic arrays in memory.
@@ -441,8 +419,6 @@ For $i = 1 To $partyArray[0]
 Next
 ```
 
----
-
 ### Reading Array Through Pointers
 
 ```autoit
@@ -464,8 +440,6 @@ EndFunc
 ; Read array at: [[$base + 0x10] + 0x20]
 $array = Memory_ReadArrayPtr($base, [0x10, 0x20], 0x8)
 ```
-
----
 
 ## Label System
 
@@ -507,8 +481,6 @@ Memory_SetValue('BasePointer', Ptr($baseAddress))
 Memory_SetValue('MyCustomValue', 12345)
 ```
 
----
-
 ### Getting Values
 
 ```autoit
@@ -543,8 +515,6 @@ $agentAddress = $agentBase + ($agentID * 0x70)
 - `PacketSend` - Packet send function
 - `UseSkill` - Skill use function
 
----
-
 ## Advanced Operations
 
 ### Memory Optimization
@@ -562,8 +532,6 @@ EndFunc
 
 **When to use**: Periodically in long-running bots to prevent memory bloat.
 
----
-
 ### Setting Maximum Memory
 
 ```autoit
@@ -580,8 +548,6 @@ EndFunc
 - `$a_i_Memory` - Maximum memory in bytes (default: ~150MB)
 
 **What it does**: Sets maximum working set size for Guild Wars process.
-
----
 
 ### Writing Detours (Hooks)
 
@@ -606,8 +572,6 @@ Memory_WriteDetour('OriginalFunc', 'MyHook')
 ; Opcode: E9 [4-byte offset]
 ```
 
----
-
 ### Get Scanned Address
 
 ```autoit
@@ -625,8 +589,6 @@ EndFunc
 **Returns**: Calculated address from scan data
 
 **When to use**: Used internally by assembler system.
-
----
 
 ## Function Reference
 
@@ -676,8 +638,6 @@ EndFunc
 | `Memory_WriteDetour` | `$From, $To` | - | Writes JMP hook |
 | `Memory_GetScannedAddress` | `$Label, $Offset` | Address | Gets scan address |
 
----
-
 ## Related Documentation
 
 - **[Architecture Overview](Overview.md)** - How memory system fits in
@@ -686,8 +646,6 @@ EndFunc
 
 **Coming Soon:**
 - Assembler System - Code injection
-
----
 
 ## Summary
 

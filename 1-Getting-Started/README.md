@@ -2,8 +2,6 @@
 
 Welcome to GwAu3! This section will get you from zero to building your first functional bot.
 
----
-
 ## 📚 Learning Path
 
 Follow these guides in order:
@@ -24,8 +22,6 @@ Build a simple but working bot that:
 
 **Prerequisites**: AutoIt installed, Guild Wars running
 
----
-
 ### 2. Want to understand how it works? [Core Initialization Guide](02-Core-Initialization.md) ⏱️ 15-20 min
 
 **Deep dive into how GwAu3 connects to Guild Wars**
@@ -40,8 +36,6 @@ Learn about:
 **Perfect for**: Understanding the foundation, debugging connection issues
 
 **Prerequisites**: Quick Start Guide completed
-
----
 
 ### 3. Ready to build real bots? [First Bot Tutorial](03-First-Bot-Tutorial.md) ⏱️ 45-60 min
 
@@ -58,8 +52,6 @@ Create a professional-quality bot with:
 **Perfect for**: Learning complete bot development, understanding bot architecture
 
 **Prerequisites**: Quick Start Guide completed, basic AutoIt knowledge
-
----
 
 ## 🛠️ Setup Checklist
 
@@ -79,8 +71,6 @@ Before starting any guide, make sure you have:
 - [ ] **Administrator privileges**
   - Required for memory access
   - Right-click script → "Run as Administrator"
-
----
 
 ## 📖 What You'll Learn
 
@@ -113,8 +103,6 @@ By completing all three Getting Started guides, you will:
 - Bot main loops
 - Error handling
 
----
-
 ## 🚀 After Completing
 
 Once you've finished all three guides, you'll be ready for:
@@ -138,8 +126,6 @@ Examine complete bots in the `Scripts/` folder to see:
 - Movement and pathfinding implementations
 - Combat logic and skill usage strategies
 
----
-
 ## 💡 Tips for Success
 
 ### 1. Follow the Order
@@ -162,8 +148,6 @@ Test after each change. Don't write 200 lines before testing!
 
 ### 7. Read Error Messages
 AutoIt error messages are helpful - read them carefully!
-
----
 
 ## 🆘 Getting Help
 
@@ -204,8 +188,6 @@ AutoIt error messages are helpful - read them carefully!
 **Bot does nothing**
 → Check console output for errors
 
----
-
 ## 📚 Additional Resources
 
 ### AutoIt Documentation
@@ -222,8 +204,6 @@ AutoIt error messages are helpful - read them carefully!
 
 **Coming Soon:**
 - Model IDs & Constants - Item/skill IDs reference
-
----
 
 ## 🎓 Study Plan
 
@@ -252,8 +232,6 @@ AutoIt error messages are helpful - read them carefully!
 - ✅ Build complex, multi-purpose bots
 - ✅ Contribute to GwAu3!
 
----
-
 ## ✅ Completion Checklist
 
 Track your progress:
@@ -270,8 +248,6 @@ Track your progress:
 - [ ] Built custom bot from scratch
 
 **When you check all boxes, you're ready for intermediate topics!**
-
----
 
 ## 🎯 Next Steps
 

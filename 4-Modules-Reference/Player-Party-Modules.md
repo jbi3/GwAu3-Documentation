@@ -8,8 +8,6 @@
 - `API/Modules/Cmd/GwAu3_Cmd_Party.au3`
 - `API/Modules/Data/GwAu3_Data_Party.au3`
 
----
-
 ## 📖 Table of Contents
 
 ### Player Module
@@ -20,8 +18,6 @@
 - [Hero Management](#hero-management)
 - [Party Information](#party-information)
 - [Complete Examples](#complete-examples)
-
----
 
 ## Player Module
 
@@ -48,8 +44,6 @@ ConsoleWrite("Playing as: " & $name & @CRLF)
 Log_Info("Bot started on character: " & Player_GetCharname())
 ```
 
----
-
 ## Party Module Overview
 
 The **Party Module** provides functions for:
@@ -58,8 +52,6 @@ The **Party Module** provides functions for:
 - **Party information** - Size, composition, leader status
 - **Hero control** - Flags, targeting, aggression, skills
 - **Player party** - Invite/kick players
-
----
 
 ## Quick Reference Card
 
@@ -91,8 +83,6 @@ Party_GetPartyContextInfo("IsHardMode")    ; Hard mode?
 Party_GetPartyContextInfo("IsPartyLeader") ; Are you leader?
 Party_GetMyPartyHeroInfo($num, "AgentID")  ; Get hero's agent ID
 ```
-
----
 
 ## Party Commands
 
@@ -150,8 +140,6 @@ $GC_I_HEROID_MOX = 45
 $GC_I_HEROID_KEIRAN_THACKERAY = 46
 ```
 
----
-
 ### Party_KickHero
 
 Kick a specific hero from party.
@@ -166,8 +154,6 @@ Party_KickHero($a_i_HeroId)
 ; Kick Olias
 Party_KickHero($GC_I_HEROID_OLIAS)
 ```
-
----
 
 ### Party_KickAllHeroes
 
@@ -189,8 +175,6 @@ Party_AddHero($GC_I_HEROID_RAZAH)
 Party_AddHero($GC_I_HEROID_MOX)
 Party_AddHero($GC_I_HEROID_XANDRA)
 ```
-
----
 
 ## Hero Management
 
@@ -214,11 +198,10 @@ Party_CommandHero($a_i_HeroNumber, $a_f_X, $a_f_Y)
 Party_CommandHero(1, 1000, -500)
 
 ; Flag hero 2 to enemy position
-Local $enemyPos = Agent_GetAgentInfo($enemy, "Pos")
-Party_CommandHero(2, $enemyPos[0], $enemyPos[1])
+Local $enemyX = Agent_GetAgentInfo($enemy, "X")
+Local $enemyY = Agent_GetAgentInfo($enemy, "Y")
+Party_CommandHero(2, $enemyX, $enemyY)
 ```
-
----
 
 ### Party_CommandAll
 
@@ -235,8 +218,6 @@ Party_CommandAll($a_f_X, $a_f_Y)
 Party_CommandAll(1500, -300)
 ```
 
----
-
 ### Party_CancelHero
 
 Cancel a hero's position flag.
@@ -252,8 +233,6 @@ Party_CancelHero($a_i_HeroNumber)
 Party_CancelHero(1)
 ```
 
----
-
 ### Party_CancelAll
 
 Cancel all party flags.
@@ -268,8 +247,6 @@ Party_CancelAll()
 ; Regroup all heroes
 Party_CancelAll()
 ```
-
----
 
 ### Party_SetHeroAggression
 
@@ -298,8 +275,6 @@ For $i = 1 To 3
 Next
 ```
 
----
-
 ### Party_LockHeroTarget
 
 Lock a hero onto a specific target.
@@ -322,8 +297,6 @@ Party_LockHeroTarget(1, $boss)
 ; Cancel lock
 Party_LockHeroTarget(1, 0)
 ```
-
----
 
 ### Hero Skill Management
 
@@ -355,8 +328,6 @@ Next
 Party_EnableHeroSkill(1, 8)
 ```
 
----
-
 ## Henchman Management
 
 ### Party_AddNpc
@@ -377,8 +348,6 @@ If $hench Then
 EndIf
 ```
 
----
-
 ### Party_KickNpc
 
 Kick a henchman.
@@ -387,8 +356,6 @@ Kick a henchman.
 ```autoit
 Party_KickNpc($a_i_NpcId)
 ```
-
----
 
 ## Party Information
 
@@ -446,8 +413,6 @@ If Party_GetPartyContextInfo("IsDefeated") Then
 EndIf
 ```
 
----
-
 ### Party_GetMyPartyHeroInfo
 
 Get information about a specific hero.
@@ -480,8 +445,6 @@ EndIf
 Local $level = Party_GetMyPartyHeroInfo(1, "Level")
 ```
 
----
-
 ### Party_GetMoraleInfo
 
 Get morale/death penalty information.
@@ -512,8 +475,6 @@ If Party_GetMoraleInfo(-2, "IsMinMorale") Then
 EndIf
 ```
 
----
-
 ## Player Party Management
 
 ### Party_AddPlayer
@@ -525,8 +486,6 @@ Invite a player to party (via party formation window).
 Party_AddPlayer($a_i_PlayerNumber)
 ```
 
----
-
 ### Party_KickPlayer
 
 Kick a player from party.
@@ -535,8 +494,6 @@ Kick a player from party.
 ```autoit
 Party_KickPlayer($a_i_PlayerNumber)
 ```
-
----
 
 ### Party_LeaveGroup
 
@@ -558,8 +515,6 @@ Party_LeaveGroup()
 ; Leave party but keep heroes
 Party_LeaveGroup(False)
 ```
-
----
 
 ## Complete Examples
 
@@ -602,8 +557,6 @@ Func SetupHeroTeam()
 EndFunc
 ```
 
----
-
 ### Hero Micro-Management
 
 ```autoit
@@ -633,8 +586,6 @@ Func FindPriorityTarget()
 EndFunc
 ```
 
----
-
 ### Flag Heroes for Splitting
 
 ```autoit
@@ -658,8 +609,6 @@ Func SplitHeroes()
     ConsoleWrite("Heroes regrouping" & @CRLF)
 EndFunc
 ```
-
----
 
 ### Party Status Monitor
 
@@ -704,8 +653,6 @@ Func MonitorPartyStatus()
 EndFunc
 ```
 
----
-
 ### Death Penalty Handler
 
 ```autoit
@@ -733,8 +680,6 @@ Func HandleDeathPenalty()
 EndFunc
 ```
 
----
-
 ## Tips & Best Practices
 
 ### 1. Wait After Hero Commands
@@ -748,8 +693,6 @@ Party_CommandHero(1, 1000, -500)
 Sleep(500)  ; Wait for hero to move
 ```
 
----
-
 ### 2. Check Hero Count Before Commands
 
 ```autoit
@@ -761,8 +704,6 @@ If $heroCount >= 3 Then
 EndIf
 ```
 
----
-
 ### 3. Regroup Before Map Travel
 
 ```autoit
@@ -771,8 +712,6 @@ Party_CancelAll()
 Sleep(500)
 Map_TravelTo(449)
 ```
-
----
 
 ## See Also
 

@@ -20,8 +20,6 @@
 9. [Testing Your Bot](#testing-your-bot)
 10. [Next Steps](#next-steps)
 
----
-
 ## What You'll Build
 
 **Project**: A complete farming bot for Guild Wars
@@ -39,8 +37,6 @@
 **Use case**: Farm low-level enemies for drops and gold
 
 **Time to build**: 45-60 minutes
-
----
 
 ## Prerequisites
 
@@ -63,8 +59,6 @@
 **Character build**: Any build with 3+ attack skills in slots 1-3  
 **Starting position**: Safe area in explorable zone
 
----
-
 ## Project Setup
 
 ### Step 1: Create Project Folder
@@ -81,8 +75,6 @@ GwAu3-main/
 2. Create new folder: `FarmingBot`
 3. Create new file: `FarmingBot.au3`
 
----
-
 ### Step 2: Project Structure
 
 We'll build the bot in **5 phases**:
@@ -94,8 +86,6 @@ We'll build the bot in **5 phases**:
 5. **Statistics** - Track kills, deaths, loot, runtime
 
 **Let's start building!**
-
----
 
 ## Phase 1: Core Structure
 
@@ -271,8 +261,6 @@ Func _DisplayStatistics()
 EndFunc
 ```
 
----
-
 ### Step 2: Test Phase 1
 
 **Save and run** the script. You should see:
@@ -298,8 +286,6 @@ HP: 100.0% | Energy: 85.3% | Kills: 0 | Loot: 0
 ```
 
 **If this works, Phase 1 is complete!** ✅
-
----
 
 ## Phase 2: Combat System
 
@@ -369,8 +355,6 @@ Func _DoCombat()
 EndFunc
 ```
 
----
-
 ### Step 2: Add Combat to Main Loop
 
 Find this comment in the main loop:
@@ -383,8 +367,6 @@ Replace it with:
 ; === PHASE 2: COMBAT ===
 _DoCombat()
 ```
-
----
 
 ### Step 3: Test Combat
 
@@ -404,8 +386,6 @@ _DoCombat()
 ```
 
 **If combat works, Phase 2 is complete!** ✅
-
----
 
 ## Phase 3: Loot System
 
@@ -464,8 +444,6 @@ Func _IsInventoryFull()
 EndFunc
 ```
 
----
-
 ### Step 2: Add Loot to Main Loop
 
 Find this comment:
@@ -490,8 +468,6 @@ EndIf
 
 **Note**: We also changed Phase 2 - now combat returns True/False to indicate if fighting!
 
----
-
 ### Step 3: Update Combat Function
 
 Find this line in `_DoCombat()`:
@@ -501,8 +477,6 @@ _DoCombat()
 ```
 
 Remove it (we already added it in Phase 3 section above)!
-
----
 
 ### Step 4: Test Looting
 
@@ -518,8 +492,6 @@ Remove it (we already added it in Phase 3 section above)!
 ```
 
 **If looting works, Phase 3 is complete!** ✅
-
----
 
 ## Phase 4: Safety Features
 
@@ -578,8 +550,6 @@ Func _CheckHealth()
 EndFunc
 ```
 
----
-
 ### Step 2: Add Safety to Main Loop
 
 Find this comment:
@@ -594,8 +564,6 @@ If _CheckDeath() Then ContinueLoop
 If _CheckHealth() Then ContinueLoop
 ```
 
----
-
 ### Step 3: Test Safety
 
 **Test death detection**:
@@ -608,8 +576,6 @@ If _CheckHealth() Then ContinueLoop
 2. Bot should retreat
 
 **If safety features work, Phase 4 is complete!** ✅
-
----
 
 ## Phase 5: Statistics Tracking
 
@@ -641,8 +607,6 @@ Func _DisplayStatus()
 EndFunc
 ```
 
----
-
 ### Step 2: Test Statistics
 
 **Run the bot for a few minutes**:
@@ -664,8 +628,6 @@ Kills/Hour: 181.5
 
 **If statistics work, Phase 5 is complete!** ✅
 
----
-
 ## Testing Your Bot
 
 ### Full Test Checklist
@@ -685,8 +647,6 @@ Go to a farming area and verify:
 - [ ] Runtime statistics display
 - [ ] ESC stops bot gracefully
 - [ ] Final statistics are accurate
-
----
 
 ### Sample Run Output
 
@@ -741,8 +701,6 @@ Items Looted: 52
 Kills/Hour: 163.9
 ```
 
----
-
 ## Next Steps
 
 ### Congratulations! 🎉
@@ -752,8 +710,6 @@ You've built a complete, functional farming bot with:
 - ✅ Loot pickup
 - ✅ Safety features
 - ✅ Statistics tracking
-
----
 
 ### Enhancements to Try
 
@@ -765,8 +721,6 @@ If $energy > 0.5 Then
 EndIf
 ```
 
----
-
 **2. Add item filtering**:
 ```autoit
 ; Only pick up valuable items
@@ -775,8 +729,6 @@ Func _ShouldLoot($itemID)
     Return ($rarity >= $RARITY_GOLD)  ; Only gold+ items
 EndFunc
 ```
-
----
 
 **3. Add auto-salvage**:
 ```autoit
@@ -789,8 +741,6 @@ Func _SalvageJunk()
     ; ... implementation
 EndFunc
 ```
-
----
 
 **4. Add patrol routes**:
 ```autoit
@@ -806,8 +756,6 @@ Func _Patrol()
 EndFunc
 ```
 
----
-
 **5. Add GUI**:
 ```autoit
 ; Create simple GUI with start/stop buttons
@@ -815,8 +763,6 @@ EndFunc
 
 ; ... GUI creation code
 ```
-
----
 
 ### Learn More
 
@@ -838,8 +784,6 @@ EndFunc
 - Multi-bot coordination techniques
 - Complex movement and pathfinding logic
 
----
-
 ## Complete Code
 
 **Final FarmingBot.au3**: [View complete code here](#)
@@ -849,8 +793,6 @@ EndFunc
 Scripts/FarmingBot/
 └── FarmingBot.au3  (complete script ~350 lines)
 ```
-
----
 
 ## Troubleshooting
 
@@ -872,8 +814,6 @@ Scripts/FarmingBot/
 **High CPU usage**:
 - Increase Sleep() delays
 - Reduce status update frequency
-
----
 
 *Congratulations on building your first complete farming bot! You now have the foundation to create any type of GW bot you can imagine.*
 

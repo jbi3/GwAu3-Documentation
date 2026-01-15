@@ -4,8 +4,6 @@
 **Difficulty**: Advanced  
 **Prerequisites**: [Architecture Overview](Overview.md), [Memory System](Memory-System.md), Basic x86 assembly knowledge
 
----
-
 ## 📖 Table of Contents
 
 1. [Introduction](#introduction)
@@ -17,8 +15,6 @@
 7. [Helper Functions](#helper-functions)
 8. [Performance Optimization](#performance-optimization)
 9. [Function Reference](#function-reference)
-
----
 
 ## Introduction
 
@@ -34,8 +30,6 @@ The Scanner System (`GwAu3_Core_Scanner.au3`) is the **most critical** component
 
 **File Location**: `API/Core/GwAu3_Core_Scanner.au3`  
 **Size**: ~960 lines (one of the largest core files)
-
----
 
 ## Why Scanner is Needed
 
@@ -63,8 +57,6 @@ $packetSend = 0x0041A5C0  ; Breaks on update
 Scanner_AddPattern('PacketSend', 'C747540000000081E6', -0x4F, 'Func')
 ; This byte sequence is unique and finds the function regardless of where it's loaded
 ```
-
----
 
 ## PE Structure Parsing
 
@@ -119,8 +111,6 @@ EndFunc
 
 **Returns**: Base address where Gw.exe is loaded (usually 0x00400000)
 
----
-
 ### Initializing Sections
 
 ```autoit
@@ -174,8 +164,6 @@ EndFunc
 - `.rsrc` - Resources
 - `.reloc` - Relocation table
 
----
-
 ## Pattern Types
 
 GwAu3 supports two main pattern types:
@@ -221,8 +209,6 @@ Scanner_AddPattern('PreGame', "P:\Code\Gw\Ui\UiPregame.cpp", "!s_scene", 'Ptr')
 
 **Why this works**: C++ assertions compile to code that passes file and line info to an assertion function. These file paths and messages are unique identifiers.
 
----
-
 ## Scanning Process
 
 ### Overview
@@ -258,8 +244,6 @@ Patterns are stored in `$g_amx2_Patterns` array:
 [1][4] = False                     (is assertion?)
 [1][5] = ""                        (assertion message)
 ```
-
----
 
 ### 2. Scan Execution
 
@@ -301,8 +285,6 @@ Memory_SetValue('ScanBasePointerPtr', $result_address)
 Memory_SetValue('ScanPacketSendFunc', $result_address)
 ```
 
----
-
 ### Pattern Search Algorithm
 
 GwAu3 uses an optimized **Boyer-Moore-Horspool** algorithm for fast pattern matching:
@@ -343,8 +325,6 @@ EndFunc
 3. **Early exit**: Stop when all patterns found
 4. **Hash tables**: Quick lookup for patterns starting with same byte
 
----
-
 ### 3. Result Retrieval
 
 ```autoit
@@ -355,8 +335,6 @@ $basePointer = Scanner_GetScanResult('BasePointer', $g_ap_ScanResults, 'Ptr')
 1. Looks up `'ScanBasePointerPtr'` in results
 2. Returns the address found
 3. Type indicates how to interpret (Ptr/Func/Hook)
-
----
 
 ## Pattern Management
 
@@ -391,8 +369,6 @@ EndFunc
 - `$a_v_OffsetOrMsg` - Offset if byte pattern, message if assertion
 - `$a_s_Type` - 'Ptr', 'Func', or 'Hook'
 
----
-
 ### Clearing Patterns
 
 ```autoit
@@ -404,8 +380,6 @@ EndFunc
 ```
 
 **When to use**: At the start of initialization to clear any previous patterns.
-
----
 
 ### Getting Pattern Info
 
@@ -422,8 +396,6 @@ EndFunc
 ```
 
 **Returns**: Array with pattern details (name, hex, offset, type, etc.)
-
----
 
 ## Helper Functions
 
@@ -483,8 +455,6 @@ Scanner_FunctionFromNearCall(0x0041A5C0) → 0x0041B800
 - Short JMP (EB)
 - Trampoline following (recursive)
 
----
-
 ### Finding in Range
 
 ```autoit
@@ -524,8 +494,6 @@ EndFunc
 $result = Scanner_FindInRange("57B9", "xx", 2, $address, $address + 0xFF)
 ```
 
----
-
 ### Finding Function Start
 
 ```autoit
@@ -548,8 +516,6 @@ EndFunc
 0x0041A5C3: 83 EC 20  SUB ESP, 20
 ```
 
----
-
 ### Scanning for Character Name
 
 ```autoit
@@ -570,8 +536,6 @@ EndFunc
 ```
 
 **What it does**: Finds currently logged-in character's name by searching for unique code pattern.
-
----
 
 ## Performance Optimization
 
@@ -643,8 +607,6 @@ $g_amx_AssertionCache[n][2] = hex pattern
 
 Subsequent scans reuse cached patterns without re-searching for strings.
 
----
-
 ## Function Reference
 
 ### Core Functions
@@ -684,8 +646,6 @@ Subsequent scans reuse cached patterns without re-searching for strings.
 | `Scanner_GetPatternInfo` | `$Name, $Type=''` | Pattern info array | Gets pattern details |
 | `Scanner_GetMultipleAssertionPatterns` | `$Assertions` | Hex patterns | Converts assertions to hex |
 
----
-
 ## Related Documentation
 
 - **[Architecture Overview](Overview.md)** - How scanner fits in overall system
@@ -694,8 +654,6 @@ Subsequent scans reuse cached patterns without re-searching for strings.
 
 **Coming Soon:**
 - Assembler System - Uses scanner results for code injection
-
----
 
 ## Summary
 

@@ -11,8 +11,6 @@
 
 This section documents all available GwAu3 modules - the high-level API you'll use to build bots.
 
----
-
 ## ✅ Priority Modules (Complete)
 
 These 5 modules are essential for almost every bot:
@@ -37,8 +35,6 @@ Item pickup, inventory management, identification, salvaging, gold.
 **[Player & Party Modules](Player-Party-Modules.md)**  
 Character info, hero management, party composition, henchmen.
 
----
-
 ## 📝 Coming Soon (20+ Modules)
 
 ### Common Modules (Next Priority)
@@ -58,8 +54,6 @@ Character info, hero management, party composition, henchmen.
 - **World Module** - World context
 - **And more...**
 
----
-
 ## 📚 Module Structure
 
 Each module combines:
@@ -67,8 +61,6 @@ Each module combines:
 - **Data Functions** (`Data_*`) - Information (get HP, read position, etc.)
 
 All documented together in one comprehensive reference per module.
-
----
 
 ## 💡 Usage Tips
 
@@ -88,8 +80,6 @@ Every module includes:
 - ✅ Parameter descriptions
 - ✅ Return value explanations
 - ✅ Implementation details
-
----
 
 ## 🔗 Related Documentation
 

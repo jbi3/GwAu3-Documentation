@@ -7,8 +7,6 @@
 - `API/Modules/Cmd/GwAu3_Cmd_Skill.au3`
 - `API/Modules/Data/GwAu3_Data_Skill.au3`
 
----
-
 ## 📖 Table of Contents
 
 ### Quick Links
@@ -27,8 +25,6 @@
 - [Skill Properties](#skill-properties)
 - [Helper Functions](#helper-functions-by-category)
 
----
-
 ## Overview
 
 The **Skill Module** provides comprehensive functions for:
@@ -39,8 +35,6 @@ The **Skill Module** provides comprehensive functions for:
 - **Acquiring skills** (buying, unlocking, tomes)
 
 **This is one of the most important modules** - nearly every combat bot uses these functions!
-
----
 
 ## Common Use Cases
 
@@ -60,8 +54,6 @@ EndIf
 ; Use healing skill on self
 Skill_UseSkill(2, -2)  ; -2 = yourself
 ```
-
----
 
 ### 2. Check Skill Recharge
 
@@ -85,8 +77,6 @@ Else
 EndIf
 ```
 
----
-
 ### 3. Skill Rotation with Recharge Check
 
 **Combat rotation:**
@@ -100,8 +90,6 @@ For $i = 1 To 3
 Next
 ```
 
----
-
 ### 4. Hero Skill Usage
 
 **Use hero skills:**
@@ -112,8 +100,6 @@ Skill_UseHeroSkill(1, 5, $enemy)
 ; Cancel hero skill (interrupt)
 Skill_CancelHeroSkill(1, 5)
 ```
-
----
 
 ### 5. Check Skill Properties
 
@@ -134,8 +120,6 @@ ElseIf Skill_IsHexType($skillID) Then
 EndIf
 ```
 
----
-
 ### 6. Load Complete Skillbar
 
 **Set all skills at once:**
@@ -146,8 +130,6 @@ Skill_LoadSkillBar(1090, 1091, 1092, 1093, 1094, 1095, 1096, 1097)
 ; Load skillbar for hero 1
 Skill_LoadSkillBar(1090, 1091, 1092, 1093, 1094, 1095, 1096, 1097, 1)  ; 1 = hero index
 ```
-
----
 
 ## Quick Reference Card
 
@@ -177,8 +159,6 @@ Skill_IsEliteSpecial($skillID)                 ; Is elite?
 Skill_GetSkillType($skillID)                   ; Get skill type
 Skill_GetProfessionName($professionID)         ; Get profession name
 ```
-
----
 
 ## Skill Usage Commands
 
@@ -244,8 +224,6 @@ Skill_UseSkill(8, $deadAlly)
 - Check `IsRecharged` before using to avoid wasted attempts
 - Game enforces aftercast delay automatically
 
----
-
 ### Skill_UseHeroSkill
 
 Make a hero use one of their skills.
@@ -282,8 +260,6 @@ Skill_UseHeroSkill(3, 2, Agent_GetMyID())
 - Hero must have skill in specified slot
 - Target 0 = hero's current target
 
----
-
 ### Skill_CancelHeroSkill
 
 Cancel a hero's channeled or maintained skill.
@@ -310,8 +286,6 @@ Skill_CancelHeroSkill(1, 3)
 **Notes:**
 - Useful for interrupting long casts
 - Also cancels maintained enchantments/stances
-
----
 
 ## Skillbar Management
 
@@ -340,8 +314,6 @@ Skill_SetSkillbarSkill(1, 122)
 ; Change hero 1's skill slot 8 to Resurrection Signet (ID 122)
 Skill_SetSkillbarSkill(8, 122, 1)
 ```
-
----
 
 ### Skill_LoadSkillBar
 
@@ -374,8 +346,6 @@ Skill_LoadSkillBar(122, 135, 145, 150, 160, 170, 180, 122, 1)  ; Hero 1
 - Faster than setting skills one-by-one
 - Use 0 for empty slots
 
----
-
 ## Skill Acquisition
 
 ### Skill_BuySkillByID
@@ -404,8 +374,6 @@ Skill_BuySkillByID(135)
 - Costs gold (1000g per skill)
 - Skill must be available from that trainer
 
----
-
 ### Skill_UnlockSkillByID
 
 Unlock a skill at Priest of Balthazar (PvP unlock).
@@ -432,8 +400,6 @@ Skill_UnlockSkillByID(1090)
 - Must be at Priest of Balthazar NPC
 - PvP-only unlock (doesn't unlock for PvE)
 
----
-
 ### Skill_UnlockSkillBossByID
 
 Unlock elite skill after capturing it from a boss.
@@ -459,8 +425,6 @@ Skill_UnlockSkillBossByID(1090)  ; Backbreaker
 - Only works after using Signet of Capture on boss
 - Boss must have the specified skill
 
----
-
 ### Skill_UnlockTomeSkillByID
 
 Unlock a skill using a tome.
@@ -483,8 +447,6 @@ Skill_UnlockTomeSkillByID($a_i_ItemID, $a_i_SkillID)
 Local $tome = Item_FindItemByModelID(21796)  ; Warrior tome
 Skill_UnlockTomeSkillByID($tome, 1090)
 ```
-
----
 
 ### Skill_SkillForQuest
 
@@ -511,8 +473,6 @@ Skill_SkillForQuest(3)
 - Used for quests like "Venta Cemetery" (Disarm Trap)
 - Quest must be offering a skill reward
 
----
-
 ## Skillbar Information
 
 ### Skill_GetSkillbarInfo
@@ -531,8 +491,6 @@ Skill_GetSkillbarInfo($a_i_SkillSlot = 1, $a_s_Info = "", $a_i_HeroNumber = 0)
 
 **Returns:**
 - Depends on `$a_s_Info` parameter
-
----
 
 ### Skillbar Info Types
 
@@ -561,8 +519,6 @@ EndIf
 ```autoit
 Local $queued = Skill_GetSkillbarInfo(1, "Queued")
 ```
-
----
 
 #### Per-Skill Information
 
@@ -600,8 +556,6 @@ If Skill_GetSkillbarInfo(8, "HasSkill") Then
 EndIf
 ```
 
----
-
 #### Skillbar Searching
 
 **"SlotBySkillID"** - Find which slot has a skill ID
@@ -619,8 +573,6 @@ If Skill_GetSkillbarInfo(122, "HasSkillID") Then  ; 122 = Res Signet
 EndIf
 ```
 
----
-
 ### Hero Skillbar Example
 
 ```autoit
@@ -633,8 +585,6 @@ EndIf
 ; Get hero 2's skill 1 ID
 Local $heroSkill = Skill_GetSkillbarInfo(1, "SkillID", 2)
 ```
-
----
 
 ## Skill Static Data
 
@@ -654,8 +604,6 @@ Skill_GetSkillInfo($a_v_SkillID, $a_s_Info = "")
 **Returns:**
 - Depends on `$a_s_Info` parameter
 - `0` if invalid
-
----
 
 ### Skill Info Types (Essential)
 
@@ -690,8 +638,6 @@ Local $attr = Skill_GetSkillInfo(1090, "Attribute")
 ; Hammer Mastery, Healing Prayers, etc.
 ```
 
----
-
 #### Costs
 
 **"EnergyCost"** - Energy cost
@@ -715,8 +661,6 @@ Local $overcast = Skill_GetSkillInfo($skillID, "Overcast")
 ; Returns 5, 10, or 0
 ```
 
----
-
 #### Timing
 
 **"Activation"** - Activation time (seconds)
@@ -735,8 +679,6 @@ Local $aftercast = Skill_GetSkillInfo(1090, "Aftercast")
 Local $recharge = Skill_GetSkillInfo(1090, "Recharge")
 ```
 
----
-
 #### Scaling Values
 
 **"Duration0"** - Duration at attribute level 0
@@ -753,8 +695,6 @@ Local $dur15 = Skill_GetSkillInfo($skillID, "Duration15")
 **"Scale15"** - Effect scale at level 15
 **"BonusScale0"** - Bonus scale at level 0
 **"BonusScale15"** - Bonus scale at level 15
-
----
 
 #### Effects and Requirements
 
@@ -792,8 +732,6 @@ Local $target = Skill_GetSkillInfo($skillID, "Target")
 ; Self, Enemy, Ally, Corpse, etc.
 ```
 
----
-
 #### Other Properties
 
 **"Combo"** - Combo type (assassin)
@@ -802,8 +740,6 @@ Local $target = Skill_GetSkillInfo($skillID, "Target")
 **"SkillArguments"** - Skill scaling arguments
 **"AoeRange"** - Area of effect range
 **"ConstEffect"** - Constant effect value
-
----
 
 ### Examples
 
@@ -817,8 +753,6 @@ ConsoleWrite("Energy Cost: " & Skill_GetSkillInfo($skillID, "EnergyCost") & @CRL
 ConsoleWrite("Activation: " & Skill_GetSkillInfo($skillID, "Activation") & "s" & @CRLF)
 ConsoleWrite("Recharge: " & Skill_GetSkillInfo($skillID, "Recharge") & "s" & @CRLF)
 ```
-
----
 
 ## Helper Functions (by Category)
 
@@ -834,8 +768,6 @@ ConsoleWrite("Last used slot: " & $lastSlot & @CRLF)
 ```autoit
 Local $lastTarget = Skill_GetLastTarget()
 ```
-
----
 
 ### Campaign Checks
 
@@ -855,8 +787,6 @@ Skill_IsBonusMissionPackCampaign($skillID)
 ```autoit
 Local $name = Skill_GetCampaignName(3)  ; "Nightfall"
 ```
-
----
 
 ### Skill Type Checks
 
@@ -882,8 +812,6 @@ Skill_IsChantType($skillID)
 Skill_IsEchoType($skillID)
 ```
 
----
-
 ### Special Flags
 
 **Skill_GetSkillSpecial($skillID)** - Get special flags
@@ -898,8 +826,6 @@ Skill_IsPVESpecial($skillID)             ; PvE-only skill?
 Skill_IsPVPSpecial($skillID)             ; PvP-only skill?
 Skill_IsMonsterSkillSpecial($skillID)    ; Monster skill?
 ```
-
----
 
 ### Effect Flags (Effect1)
 
@@ -918,8 +844,6 @@ Skill_IsDazeEffect1($skillID)            ; Causes dazed
 Skill_IsWeakEffect1($skillID)            ; Causes weakness
 ```
 
----
-
 ### Effect Flags (Effect2)
 
 Skill mechanics and capabilities:
@@ -936,8 +860,6 @@ Skill_IsEnergyStealEffect2($skillID)     ; Steals energy
 Skill_IsHexRemovalEffect2($skillID)      ; Removes hexes
 Skill_IsConditionRemovalEffect2($skillID); Removes conditions
 ```
-
----
 
 ### Requirement Checks
 
@@ -960,8 +882,6 @@ Skill_IsWeaponReqScythe($skillID)
 Skill_IsWeaponReqSword($skillID)
 ```
 
----
-
 ### Profession Checks
 
 ```autoit
@@ -983,8 +903,6 @@ Skill_IsProfessionDervish($skillID)
 Local $name = Skill_GetProfessionName(1)  ; "Warrior"
 ```
 
----
-
 ### Target Type Checks
 
 ```autoit
@@ -998,8 +916,6 @@ Skill_IsTargetMinion($skillID)
 Skill_IsTargetGround($skillID)
 ```
 
----
-
 ### Cracked Armor Functions
 
 ```autoit
@@ -1007,8 +923,6 @@ Skill_InflictCA($skillID)          ; Inflicts cracked armor?
 Skill_RequireCA($skillID)          ; Requires cracked armor?
 Skill_BenefitWithCA($skillID)      ; Bonus vs cracked armor?
 ```
-
----
 
 ### Skill Arguments (Scaling)
 
@@ -1028,8 +942,6 @@ ConsoleWrite("Backbreaker duration: " & $duration & "s" & @CRLF)
 Local $heroDuration = Skill_GetSkillArg(1090, "Duration", 1)
 ```
 
----
-
 ## Complete Combat Example
 
 ```autoit
@@ -1045,7 +957,7 @@ Func DoCombat($enemy)
         If $skillID > 0 And Skill_IsEliteSpecial($skillID) Then
             ; Check energy cost
             Local $energyCost = Skill_GetSkillInfo($skillID, "EnergyCost")
-            Local $myEnergy = Agent_GetAgentInfo(-2, "Energy")
+            Local $myEnergy = Agent_GetAgentInfo(-2, "EnergyPercent")
             
             If $myEnergy * Agent_GetAgentInfo(-2, "MaxEnergy") >= $energyCost Then
                 Skill_UseSkill(8, $enemy)
@@ -1065,7 +977,7 @@ Func DoCombat($enemy)
             
             ; Check energy
             Local $energyCost = Skill_GetSkillInfo($skillID, "EnergyCost")
-            Local $myEnergy = Agent_GetAgentInfo(-2, "Energy")
+            Local $myEnergy = Agent_GetAgentInfo(-2, "EnergyPercent")
             Local $maxEnergy = Agent_GetAgentInfo(-2, "MaxEnergy")
             
             If $myEnergy * $maxEnergy >= $energyCost Then
@@ -1086,8 +998,6 @@ Func DoCombat($enemy)
     Return False
 EndFunc
 ```
-
----
 
 ## Advanced Examples
 
@@ -1110,8 +1020,6 @@ Func UseHealingSkill()
     Return False
 EndFunc
 ```
-
----
 
 ### Interrupt Bot
 
@@ -1136,8 +1044,6 @@ Func TryInterrupt($enemy)
     Return False
 EndFunc
 ```
-
----
 
 ### Skill Validation
 
@@ -1178,8 +1084,6 @@ Func ValidateSkillbar($profession)
 EndFunc
 ```
 
----
-
 ## See Also
 
 - **[Agent Module](Agent-Module.md)** - For targeting entities
@@ -1187,8 +1091,6 @@ EndFunc
 - **[Player Module](Player-Module.md)** - For character stats
 - **[Attribute Module](Attribute-Module.md)** - For attribute levels
 - **[Core Functions](../3-Core-Systems/Core-Functions.md)** - For Core_Enqueue
-
----
 
 ## Tips & Best Practices
 
@@ -1206,8 +1108,6 @@ If Skill_GetSkillbarInfo(1, "IsRecharged") Then
 EndIf
 ```
 
----
-
 ### 2. Respect Aftercast Delay
 
 ```autoit
@@ -1219,21 +1119,16 @@ Local $aftercast = Skill_GetSkillInfo($skillID, "Aftercast")
 Sleep($aftercast * 1000 + 100)  ; Add 100ms buffer
 ```
 
----
-
 ### 3. Check Energy Before Casting
 
 ```autoit
 Local $energyCost = Skill_GetSkillInfo($skillID, "EnergyCost")
-Local $myEnergy = Agent_GetAgentInfo(-2, "Energy")
-Local $maxEnergy = Agent_GetAgentInfo(-2, "MaxEnergy")
+Local $currentEnergy = Agent_GetAgentInfo(-2, "CurrentEnergy")
 
-If $myEnergy * $maxEnergy >= $energyCost Then
+If $currentEnergy >= $energyCost Then
     Skill_UseSkill($slot, $enemy)
 EndIf
 ```
-
----
 
 ### 4. Use Skill Properties for Smart Decisions
 
@@ -1249,8 +1144,6 @@ If Agent_GetAgentInfo($enemy, "Casting") Then
 EndIf
 ```
 
----
-
 ### 5. Track Last Used Skill
 
 ```autoit
@@ -1264,8 +1157,6 @@ For $slot = 1 To 8
     EndIf
 Next
 ```
-
----
 
 ## Common Patterns
 
@@ -1283,7 +1174,7 @@ Func UseNextSkill($enemy)
             Local $energyCost = Skill_GetSkillInfo($skillID, "EnergyCost")
             
             ; Check energy
-            If Agent_GetAgentInfo(-2, "Energy") * Agent_GetAgentInfo(-2, "MaxEnergy") >= $energyCost Then
+            If Agent_GetAgentInfo(-2, "CurrentEnergy") >= $energyCost Then
                 Skill_UseSkill($slot, $enemy)
                 Return $slot
             EndIf
@@ -1292,8 +1183,6 @@ Func UseNextSkill($enemy)
     Return 0
 EndFunc
 ```
-
----
 
 ### Conditional Skill Usage
 

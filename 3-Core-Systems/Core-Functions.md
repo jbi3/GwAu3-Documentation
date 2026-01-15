@@ -4,8 +4,6 @@
 **Difficulty**: Intermediate  
 **Prerequisites**: [Architecture Overview](../2-Architecture/Overview.md), [Packet System](../2-Architecture/Packet-System.md)
 
----
-
 ## 📖 Table of Contents
 
 1. [Introduction](#introduction)
@@ -18,8 +16,6 @@
 8. [Function Reference Table](#function-reference-table)
 9. [Usage Examples](#usage-examples)
 
----
-
 ## Introduction
 
 Core Functions are the **low-level API** of GwAu3. They provide direct access to the queue system, packet sending, and game initialization. Most scripts use higher-level module functions, but understanding these core functions is essential for:
@@ -31,8 +27,6 @@ Core Functions are the **low-level API** of GwAu3. They provide direct access to
 - Contributing to GwAu3
 
 **File Location**: `API/GwAu3_Core.au3`
-
----
 
 ## Initialization Functions
 
@@ -83,8 +77,6 @@ EndIf
 ConsoleWrite("Successfully initialized!" & @CRLF)
 ```
 
----
-
 ## Queue Functions
 
 ### Core_Enqueue
@@ -119,8 +111,6 @@ Core_Enqueue($g_p_UseSkill, 8)  ; 8 bytes
 
 **When to use**: Almost never directly - use module functions instead. Only for custom commands.
 
----
-
 ### Core_Enqueue_ (Optimized)
 
 **Optimized version of Core_Enqueue with atomic writes.**
@@ -139,8 +129,6 @@ Func Core_Enqueue_($a_p_Ptr, $a_i_Size)
 3. Injected code only processes if function pointer is non-zero
 
 **When to use**: For performance-critical code or when experiencing race conditions.
-
----
 
 ## Packet Functions
 
@@ -196,8 +184,6 @@ Core_SendPacket(12, $GC_I_HEADER_QUEST_ACCEPT, $questID)
 
 **Important**: Most module functions use this internally. Direct use is for custom packets only.
 
----
-
 ## Action Functions
 
 ### Core_PerformAction
@@ -239,8 +225,6 @@ Core_PerformAction($itemID, $GC_I_CONTROL_TYPE_PICKUP)
 - `$GC_I_CONTROL_TYPE_PICKUP` - Pick up item
 - `$GC_I_CONTROL_TYPE_FOLLOW` - Follow
 
----
-
 ### Core_ControlAction
 
 **Simplified wrapper for Core_PerformAction.**
@@ -265,8 +249,6 @@ Core_ControlAction($npcID, $GC_I_CONTROL_TYPE_TALK)
 ```
 
 **When to use**: Prefer module functions like `Ui_OpenChest()` for clarity.
-
----
 
 ## Status Functions
 
@@ -300,8 +282,6 @@ Switch $status
 EndSwitch
 ```
 
----
-
 ### Core_GetStatusInGame
 
 **Checks if currently in game (playing).**
@@ -326,8 +306,6 @@ EndIf
 
 **Use case**: Wait for game to load before executing commands.
 
----
-
 ### Core_GetStatusCharacterSelection
 
 **Checks if at character selection screen.**
@@ -348,8 +326,6 @@ If Core_GetStatusCharacterSelection() Then
 EndIf
 ```
 
----
-
 ### Core_GetStatusError
 
 **Checks if game is in error state.**
@@ -369,8 +345,6 @@ If Core_GetStatusError() Then
     ; Handle error
 EndIf
 ```
-
----
 
 ## Utility Functions
 
@@ -395,8 +369,6 @@ EndIf
 ```
 
 **Window Title Format**: "Guild Wars - {CharacterName}"
-
----
 
 ### Core_AutoStart
 
@@ -432,8 +404,6 @@ Core_AutoStart()  ; Automatically selects and plays
 ```
 
 **Use case**: Unattended bots that restart automatically.
-
----
 
 ## Function Reference Table
 
@@ -474,8 +444,6 @@ Core_AutoStart()  ; Automatically selects and plays
 | `Core_GetGuildWarsWindow` | - | Window handle | Get GW window |
 | `Core_AutoStart` | - | - | Auto select character |
 
----
-
 ## Usage Examples
 
 ### Complete Bot Initialization
@@ -503,8 +471,6 @@ ConsoleWrite("Ready!" & @CRLF)
 ; Bot logic here...
 ```
 
----
-
 ### Status Monitoring Loop
 
 ```autoit
@@ -528,8 +494,6 @@ While True
 WEnd
 ```
 
----
-
 ### Custom Packet Example
 
 ```autoit
@@ -552,8 +516,6 @@ EndFunc
 CustomTravel(0x0212)  ; Travel to Lion's Arch
 ```
 
----
-
 ### Queue Multiple Commands
 
 ```autoit
@@ -571,8 +533,6 @@ Next
 
 ConsoleWrite("Queued 8 skills!" & @CRLF)
 ```
-
----
 
 ### Error Recovery
 
@@ -597,16 +557,12 @@ Func SafeInitialize($charName, $maxRetries = 3)
 EndFunc
 ```
 
----
-
 ## Related Documentation
 
 - **[Architecture Overview](../2-Architecture/Overview.md)** - How core functions fit in
 - **[Memory System](../2-Architecture/Memory-System.md)** - Memory operations used
 - **[Packet System](../2-Architecture/Packet-System.md)** - Queue system details
 - **[Module Structure](../2-Architecture/Module-Structure.md)** - Higher-level API
-
----
 
 ## Best Practices
 
@@ -625,8 +581,6 @@ EndFunc
 - **Don't modify structures** while they're queued
 - **Don't call functions** before initialization
 - **Don't ignore status codes** - check for errors
-
----
 
 ## Summary
 

@@ -7,8 +7,6 @@
 - `API/Modules/Cmd/GwAu3_Cmd_Map.au3`
 - `API/Modules/Data/GwAu3_Data_Map.au3`
 
----
-
 ## 📖 Table of Contents
 
 ### Quick Links
@@ -28,8 +26,6 @@
 - [Area Database](#area-database-queries)
 - [Character Context](#character-context)
 
----
-
 ## Overview
 
 The **Map Module** provides functions for:
@@ -40,8 +36,6 @@ The **Map Module** provides functions for:
 - **Loading detection** - Wait for maps to finish loading
 
 **Essential for**: Navigation, farming routes, quest bots, chest running
-
----
 
 ## Common Use Cases
 
@@ -59,13 +53,12 @@ Map_Move(1000, -500, 50)
 **Move to agent position:**
 ```autoit
 ; Get enemy position
-Local $enemyPos = Agent_GetAgentInfo($enemy, "Pos")
+Local $enemyX = Agent_GetAgentInfo($enemy, "X")
+Local $enemyY = Agent_GetAgentInfo($enemy, "Y")
 
 ; Move to that position
-Map_Move($enemyPos[0], $enemyPos[1])
+Map_Move($enemyX, $enemyY)
 ```
-
----
 
 ### 2. Map Travel
 
@@ -88,8 +81,6 @@ If $mapID = 449 Then
 EndIf
 ```
 
----
-
 ### 3. Wait for Loading
 
 **Wait for map to finish loading:**
@@ -102,8 +93,6 @@ Map_TravelTo(449, 0, 2, 0, False)  ; Don't wait
 Map_WaitMapIsLoaded()  ; Wait manually
 ```
 
----
-
 ### 4. Check Instance Type
 
 **Check if in outpost or explorable:**
@@ -115,8 +104,6 @@ ElseIf Map_GetInstanceInfo("IsExplorable") Then
 EndIf
 ```
 
----
-
 ### 5. Return to Outpost
 
 **After mission/farming:**
@@ -124,8 +111,6 @@ EndIf
 ; Return to outpost (after resign/death)
 Map_ReturnToOutpost()
 ```
-
----
 
 ## Quick Reference Card
 
@@ -154,8 +139,6 @@ Map_GetCharacterInfo("DistrictNumber"); Current district
 Map_GetCharacterInfo("Region")        ; Current region
 Map_GetCharacterInfo("Language")      ; Current language
 ```
-
----
 
 ## Character Movement
 
@@ -212,8 +195,9 @@ Map_Move(1000, -500, 0)
 Map_Move(1000, -500, 200)
 
 ; Move to agent's position
-Local $agentPos = Agent_GetAgentInfo($enemy, "Pos")
-Map_Move($agentPos[0], $agentPos[1])
+Local $agentX = Agent_GetAgentInfo($enemy, "X")
+Local $agentY = Agent_GetAgentInfo($enemy, "Y")
+Map_Move($agentX, $agentY)
 ```
 
 **Notes:**
@@ -221,8 +205,6 @@ Map_Move($agentPos[0], $agentPos[1])
 - Character pathfinds automatically
 - Does not check if location is reachable
 - Use with Pathfinding module for complex navigation
-
----
 
 ### Map_MoveLayer
 
@@ -251,8 +233,6 @@ Map_MoveLayer(1000, -500, 1)  ; Layer 1 (upper floor)
 - Rarely needed (most maps have single layer)
 - Useful in dungeons with multiple floors
 
----
-
 ### Map_GetLastMoveCoords
 
 Get the last coordinates sent to `Map_Move`.
@@ -270,8 +250,6 @@ Map_GetLastMoveCoords()
 Local $lastPos = Map_GetLastMoveCoords()
 ConsoleWrite("Last move: X=" & $lastPos[0] & " Y=" & $lastPos[1] & @CRLF)
 ```
-
----
 
 ## Map Travel
 
@@ -333,8 +311,6 @@ Map_TravelTo(449, -1, -1, 0, False)
 - `9` - Polish
 - `10` - Russian
 
----
-
 ### Map_RndTravel
 
 Travel to random district (different from current).
@@ -361,8 +337,6 @@ Map_RndTravel(449)
 - Useful for avoiding same players/bots
 - Randomly selects from all available regions
 
----
-
 ### Map_GetMapID
 
 Get current map ID.
@@ -388,8 +362,6 @@ Switch $mapID
         ConsoleWrite("Map ID: " & $mapID & @CRLF)
 EndSwitch
 ```
-
----
 
 ## Special Travel
 
@@ -424,8 +396,6 @@ EndIf
 - Returns to the outpost you came from
 - Automatically skips cinematics
 
----
-
 ### Map_EnterChallenge
 
 Enter a challenge mission or PvP match.
@@ -446,8 +416,6 @@ Map_EnterChallenge($a_WaitToLoad = True)
 ; In challenge mission outpost
 Map_EnterChallenge()
 ```
-
----
 
 ### Map_TravelGH
 
@@ -476,8 +444,6 @@ EndIf
 - Must have guild with guild hall
 - Automatically waits for loading
 
----
-
 ### Map_LeaveGH
 
 Leave guild hall and return to previous outpost.
@@ -494,8 +460,6 @@ Map_LeaveGH()
 ```autoit
 Map_LeaveGH()
 ```
-
----
 
 ## Map Loading Helpers
 
@@ -531,8 +495,6 @@ EndIf
 - Checks for agent data, skillbar, party context
 - Standard timeout is 30 seconds
 
----
-
 ### Map_WaitMapLoading
 
 Advanced loading wait with specific criteria.
@@ -564,8 +526,6 @@ Map_WaitMapLoading(-1, 1, 30000)  ; Any map, Explorable type
 - `0` - Outpost
 - `1` - Explorable
 - `2` - Loading
-
----
 
 ## Current Map Information
 
@@ -607,8 +567,6 @@ If Map_GetInstanceInfo("IsLoading") Then
 EndIf
 ```
 
----
-
 ### Map_GetCurrentAreaInfo
 
 Get detailed information about the current area.
@@ -643,8 +601,6 @@ Local $maxParty = Map_GetCurrentAreaInfo("MaxPartySize")
 **"MinLevel"** / **"MaxLevel"** - Level requirements
 **"NameID"** - Map name string ID
 **"DescriptionID"** - Map description string ID
-
----
 
 ### Map_GetCurrentRegionType
 
@@ -686,8 +642,6 @@ Local $type = Map_GetCurrentRegionType()
 - "Dungeon"
 - "Marketplace"
 
----
-
 ### Map_GetInstanceUpTime
 
 Get how long the current instance has been running.
@@ -706,8 +660,6 @@ Local $uptime = Map_GetInstanceUpTime()
 Local $seconds = $uptime / 1000
 ConsoleWrite("Instance up for: " & $seconds & "s" & @CRLF)
 ```
-
----
 
 ## Character Context
 
@@ -751,8 +703,6 @@ Local $name = Map_GetCharacterInfo("PlayerName")
 ```
 
 **"IsExplorable"** - In explorable? (alternative check)
-
----
 
 ## Area Database Queries
 
@@ -805,8 +755,6 @@ EndIf
 **"IsVanquishableArea"** - Can be vanquished?
 **"HasEnterButton"** - Has enter mission button?
 
----
-
 ### Map_IsOutpost
 
 Check if a map ID is a valid outpost.
@@ -835,8 +783,6 @@ EndIf
 - Checks region type, flags, and other criteria
 - Useful before attempting travel
 
----
-
 ### Map_IsMapUnlocked
 
 Check if a map is unlocked on your account.
@@ -858,8 +804,6 @@ Else
     ConsoleWrite("Kamadan not unlocked yet!" & @CRLF)
 EndIf
 ```
-
----
 
 ## Complete Examples
 
@@ -885,8 +829,9 @@ Func RunFarmingRoute()
     ; Wait to arrive
     Local $startTime = TimerInit()
     While TimerDiff($startTime) < 5000  ; 5 second timeout
-        Local $myPos = Agent_GetAgentInfo(-2, "Pos")
-        Local $distance = Sqrt(($myPos[0] - $target[0])^2 + ($myPos[1] - $target[1])^2)
+        Local $myX = Agent_GetAgentInfo(-2, "X")
+        Local $myY = Agent_GetAgentInfo(-2, "Y")
+        Local $distance = Sqrt(($myX - $target[0])^2 + ($myY - $target[1])^2)
         
         If $distance < 200 Then ExitLoop  ; Arrived
         Sleep(100)
@@ -903,8 +848,6 @@ Func RunFarmingRoute()
     EndIf
 EndFunc
 ```
-
----
 
 ### Smart Travel Function
 
@@ -931,8 +874,6 @@ Func SafeTravelTo($mapID, $retries = 3)
     Return False
 EndFunc
 ```
-
----
 
 ### Map Cycle Bot
 
@@ -966,8 +907,6 @@ Func CycleMaps()
 EndFunc
 ```
 
----
-
 ### Instance Type Detection
 
 ```autoit
@@ -997,8 +936,6 @@ Func CheckInstanceSafety()
 EndFunc
 ```
 
----
-
 ## Tips & Best Practices
 
 ### 1. Always Wait for Loading
@@ -1013,8 +950,6 @@ Map_TravelTo(449)  ; Automatically waits
 Skill_UseSkill(1, -2)  ; Safe now
 ```
 
----
-
 ### 2. Verify Travel Success
 
 ```autoit
@@ -1027,8 +962,6 @@ If Map_GetMapID() <> 449 Then
 EndIf
 ```
 
----
-
 ### 3. Use Randomization for Movement
 
 ```autoit
@@ -1038,8 +971,6 @@ Map_Move(1000, -500, 50)  ; ±50 units random
 ; ❌ BAD - exact coordinates can cause stuck issues
 Map_Move(1000, -500, 0)
 ```
-
----
 
 ### 4. Check if Map is Unlocked
 
@@ -1052,8 +983,6 @@ Else
 EndIf
 ```
 
----
-
 ### 5. Handle Cinematics
 
 Map loading functions automatically skip cinematics, but you can also:
@@ -1063,8 +992,6 @@ If Game_GetGameInfo("IsCinematic") Then
     Map_WaitMapIsLoaded()
 EndIf
 ```
-
----
 
 ## See Also
 

@@ -2,7 +2,7 @@
 
 **Welcome to the getting started with GwAu3 documentation!**
 
-> **Version 0.1.0 (Beta)** | *Last Updated: January 14, 2026*
+> **Version 0.1.0 (Beta)** | *Last Updated: January 15, 2026*
 
 ## 📋 Description
 

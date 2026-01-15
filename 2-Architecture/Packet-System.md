@@ -4,8 +4,6 @@
 **Difficulty**: Advanced  
 **Prerequisites**: [Architecture Overview](Overview.md), [Memory System](Memory-System.md), [Scanner System](Scanner-System.md)
 
----
-
 ## 📖 Table of Contents
 
 1. [Introduction](#introduction)
@@ -16,8 +14,6 @@
 6. [Command Enqueuing](#command-enqueuing)
 7. [Assembler System](#assembler-system)
 8. [Function Reference](#function-reference)
-
----
 
 ## Introduction
 
@@ -33,8 +29,6 @@ The Packet and Queue System is GwAu3's solution for **safe, thread-aware command
 - `API/GwAu3_Core.au3` - Queue functions (`Core_Enqueue`, `Core_SendPacket`)
 - `API/Core/GwAu3_Core_Assembler.au3` - Assembly code injection
 - `API/Core/GwAu3_Core_Structure.au3` - Command structure definitions
-
----
 
 ## The Threading Problem
 
@@ -60,8 +54,6 @@ AutoIt Bot Process              Guild Wars Process
 - ❌ Access violations
 
 **Solution**: Queue commands for execution in GW's main thread.
-
----
 
 ## Queue Architecture
 
@@ -117,8 +109,6 @@ $g_i_QueueCounter = 0  ; Current slot to write to (0-63)
 $g_i_QueueSize = 63    ; Maximum slot index
 ```
 
----
-
 ## Command Structures
 
 ### DllStruct for Commands
@@ -152,8 +142,6 @@ DllStructSetData($g_d_Packet, 4, $param1)  ; Param 1
 ...
 Core_Enqueue($g_p_Packet, 52)  ; Queue it
 ```
-
----
 
 ## Packet System
 
@@ -200,8 +188,6 @@ EndFunc
 Core_SendPacket(8, $GC_I_HEADER_TRAVEL, 0x0212)
 ```
 
----
-
 ## Command Enqueuing
 
 ### Core_Enqueue Function
@@ -235,8 +221,6 @@ EndFunc
 - Bot writes to "next" slot
 - Injected code reads from current processing slot
 - 64 slots provide buffer for burst commands
-
----
 
 ### Optimized Version
 
@@ -275,8 +259,6 @@ EndFunc
 - Function pointer written **last**
 - Injected code checks if function pointer is non-zero
 - Prevents race condition where partial command is processed
-
----
 
 ## Assembler System
 
@@ -321,8 +303,6 @@ EndFunc
 - Stack: `retn`
 - Labels and relative addressing
 
----
-
 ### Hook Installation
 
 During `Assembler_ModifyMemory()`:
@@ -360,8 +340,6 @@ Memory_WriteBinary($machineCode, $allocatedMemory)
 Memory_WriteDetour('GameLoopHook', 'QueueProcessor')
 ```
 
----
-
 ### Queue Processing Flow
 
 ```
@@ -386,8 +364,6 @@ Game Main Loop
                       ▼
                  Continue game loop
 ```
-
----
 
 ## Function Reference
 
@@ -417,8 +393,6 @@ Game Main Loop
 | `Assembler_ModifyMemory` | Injects all assembly code |
 | `Assembler_Finalize` | Converts ASM to machine code |
 | `_` | Assembly instruction generator |
-
----
 
 ## Complete Example
 
@@ -457,16 +431,12 @@ EndFunc
 ; 7. Slot cleared, ready for next command
 ```
 
----
-
 ## Related Documentation
 
 - **[Architecture Overview](Overview.md)** - Overall system design
 - **[Memory System](Memory-System.md)** - Memory read/write operations
 - **[Module Structure](Module-Structure.md)** - How modules use packets
 - **[Core Functions](../3-Core-Systems/Core-Functions.md)** - Detailed function reference
-
----
 
 ## Summary
 

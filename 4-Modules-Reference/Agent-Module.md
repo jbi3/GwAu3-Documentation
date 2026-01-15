@@ -4,8 +4,6 @@
 **Difficulty**: Beginner to Intermediate  
 **Files**: `GwAu3_Cmd_Agent.au3`, `GwAu3_Data_Agent.au3`
 
----
-
 ## 📖 Table of Contents
 
 1. [Introduction](#introduction)
@@ -16,8 +14,6 @@
 6. [Helper Functions](#helper-functions)
 7. [Common Usage Patterns](#common-usage-patterns)
 8. [Complete Examples](#complete-examples)
-
----
 
 ## Introduction
 
@@ -33,8 +29,6 @@ The **Agent Module** is the most fundamental module in GwAu3. An "agent" in Guil
 - Get entity type and properties
 
 **Every bot uses this module** - it's essential for navigation, combat, and interaction.
-
----
 
 ## What is an Agent?
 
@@ -62,8 +56,6 @@ In Guild Wars, agents include:
 - Resurrection shrines
 - Doors, gates
 
----
-
 ### Agent ID System
 
 Every agent has a unique **Agent ID** (integer):
@@ -86,8 +78,6 @@ Agent_ConvertID($agentID)
 ; - Pointer: 0x12345678
 ; - DllStruct: $agentStruct
 ```
-
----
 
 ## Command Functions
 
@@ -115,8 +105,6 @@ Agent_ChangeTarget(-2)
 ; Clear target
 Agent_ChangeTarget(0)
 ```
-
----
 
 ### Agent_TargetNearestEnemy
 
@@ -152,8 +140,6 @@ Else
 EndIf
 ```
 
----
-
 ### Agent_TargetNearestAlly
 
 **Finds and targets the nearest ally within range.**
@@ -182,8 +168,6 @@ If $ally > 0 Then
 EndIf
 ```
 
----
-
 ### Agent_ClearTarget
 
 **Clears current target (targets nothing).**
@@ -198,8 +182,6 @@ Func Agent_ClearTarget()
 ```autoit
 Agent_ClearTarget()
 ```
-
----
 
 ### Agent_TargetSelf
 
@@ -217,8 +199,6 @@ Func Agent_TargetSelf()
 Agent_TargetSelf()
 Skill_UseSkill(5)  ; Self-heal skill
 ```
-
----
 
 ### Agent_GoPlayer
 
@@ -239,8 +219,6 @@ Func Agent_GoPlayer($a_v_Agent)
 $partyMember = Party_GetHeroInfo(1)
 Agent_GoPlayer($partyMember)
 ```
-
----
 
 ### Agent_GoNPC
 
@@ -264,8 +242,6 @@ If $merchant > 0 Then
 EndIf
 ```
 
----
-
 ### Agent_GoSignpost
 
 **Run to and interact with a signpost.**
@@ -285,8 +261,6 @@ Func Agent_GoSignpost($a_v_Agent)
 $signpost = Agent_FindNearestByModelID($GC_I_MODEL_SIGNPOST)
 Agent_GoSignpost($signpost)
 ```
-
----
 
 ### Agent_Attack
 
@@ -309,8 +283,6 @@ $enemy = Agent_TargetNearestEnemy()
 Agent_Attack($enemy, True)  ; Party sees target
 ```
 
----
-
 ### Agent_CallTarget
 
 **Call target for your party (marks for team).**
@@ -330,8 +302,6 @@ Func Agent_CallTarget($a_v_Target)
 Agent_CallTarget($bossID)
 ```
 
----
-
 ### Agent_CancelAction
 
 **Cancel current action (movement, attack, skill).**
@@ -347,8 +317,6 @@ Func Agent_CancelAction()
 ; Stop current action
 Agent_CancelAction()
 ```
-
----
 
 ## Data Functions
 
@@ -367,8 +335,6 @@ Func Agent_GetMyID()
 $myID = Agent_GetMyID()
 ConsoleWrite("My ID: " & $myID & @CRLF)
 ```
-
----
 
 ### Agent_GetCurrentTarget
 
@@ -390,8 +356,6 @@ Else
 EndIf
 ```
 
----
-
 ### Agent_GetMaxAgents
 
 **Gets maximum number of agent slots.**
@@ -412,8 +376,6 @@ For $i = 1 To Agent_GetMaxAgents()
     EndIf
 Next
 ```
-
----
 
 ### Agent_GetAgentPtr
 
@@ -437,8 +399,6 @@ If $ptr > 0 Then
 EndIf
 ```
 
----
-
 ### Agent_GetAgentInfo
 
 **THE MOST IMPORTANT FUNCTION - Gets any information about an agent.**
@@ -456,13 +416,12 @@ Func Agent_GetAgentInfo($a_i_AgentID = -2, $a_s_Info = "")
 **Example**:
 ```autoit
 ; Get various info
-$hp = Agent_GetAgentInfo(-2, "HP")             ; Your HP
-$energy = Agent_GetAgentInfo(-2, "Energy")     ; Your energy
+$hp = Agent_GetAgentInfo(-2, "HP")             ; Your HP (0.0-1.0)
+$energy = Agent_GetAgentInfo(-2, "EnergyPercent")  ; Your energy (0.0-1.0)
+$currentEnergy = Agent_GetAgentInfo(-2, "CurrentEnergy")  ; Actual energy points
 $x = Agent_GetAgentInfo($enemyID, "X")         ; Enemy X position
 $modelID = Agent_GetAgentInfo($npcID, "PlayerNumber")  ; NPC model
 ```
-
----
 
 ## Agent Information Fields
 
@@ -473,27 +432,24 @@ $modelID = Agent_GetAgentInfo($npcID, "PlayerNumber")  ; NPC model
 | `X` | Float | X coordinate |
 | `Y` | Float | Y coordinate |
 | `Z` | Float | Z coordinate (height) |
-| `Pos` | Array | [X, Y] position |
 | `MoveX` | Float | Movement target X |
 | `MoveY` | Float | Movement target Y |
 | `Rotation` | Float | Rotation angle |
 | `RotationCos` | Float | Cos of rotation |
 | `RotationSin` | Float | Sin of rotation |
 
----
-
 ### Health & Energy
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `HP` | Float | Health percent (0.0-1.0) |
-| `Energy` | Float | Energy percent (0.0-1.0) |
+| `EnergyPercent` | Float | Energy percent (0.0-1.0) |
+| `CurrentEnergy` | Float | Current energy points (EnergyPercent × MaxEnergy) |
 | `MaxHP` | Integer | Maximum health points |
 | `MaxEnergy` | Integer | Maximum energy points |
+| `CurrentHP` | Float | Current health points (HP × MaxHP) |
 | `IsDead` | Boolean | Is agent dead? |
 | `IsKnocked` | Boolean | Is knocked down? |
-
----
 
 ### Identity & Type
 
@@ -506,8 +462,6 @@ $modelID = Agent_GetAgentInfo($npcID, "PlayerNumber")  ; NPC model
 | `IsGadgetType` | Boolean | Is gadget/object? |
 | `PlayerNumber` | Integer | Model/NPC ID |
 | `Owner` | Integer | Owner agent ID (for items) |
-
----
 
 ### Combat & Status
 
@@ -522,15 +476,11 @@ $modelID = Agent_GetAgentInfo($npcID, "PlayerNumber")  ; NPC model
 | `IsIdle` | Boolean | Is idle? |
 | `IsAttacking` | Boolean | Is attacking? |
 
----
-
 ### Distances
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `Distance` | Float | Distance from you |
-
----
 
 ## Helper Functions
 
@@ -556,8 +506,6 @@ If $distance < 500 Then
 EndIf
 ```
 
----
-
 ### Agent_FindNearestByModelID
 
 **Finds nearest agent with specific model ID.**
@@ -581,8 +529,6 @@ If $merchant > 0 Then
 EndIf
 ```
 
----
-
 ## Common Usage Patterns
 
 ### Combat Pattern
@@ -598,8 +544,9 @@ While True
         
         If $dist > 600 Then
             ; Too far, move closer
-            $pos = Agent_GetAgentInfo($enemy, "Pos")
-            Map_Move($pos[0], $pos[1])
+            $enemyX = Agent_GetAgentInfo($enemy, "X")
+            $enemyY = Agent_GetAgentInfo($enemy, "Y")
+            Map_Move($enemyX, $enemyY)
             Sleep(1000)
         Else
             ; In range, attack
@@ -613,8 +560,6 @@ While True
     EndIf
 WEnd
 ```
-
----
 
 ### Healing Pattern
 
@@ -646,8 +591,6 @@ Func HealLowestAlly()
 EndFunc
 ```
 
----
-
 ### Loot Pickup Pattern
 
 ```autoit
@@ -671,16 +614,15 @@ Func PickupNearbyItems()
         If $distance > 1000 Then ContinueLoop
         
         ; Pick it up!
-        $pos = Agent_GetAgentInfo($i, "Pos")
-        Map_Move($pos[0], $pos[1])
+        $itemX = Agent_GetAgentInfo($i, "X")
+        $itemY = Agent_GetAgentInfo($i, "Y")
+        Map_Move($itemX, $itemY)
         Sleep(500)
         Core_PerformAction($i, $GC_I_CONTROL_TYPE_PICKUP)
         Sleep(300)
     Next
 EndFunc
 ```
-
----
 
 ## Complete Examples
 
@@ -724,8 +666,6 @@ EndFunc
 FindAndKillBoss(12345)  ; Replace with actual boss model ID
 ```
 
----
-
 ### Example 2: Party Health Monitor
 
 ```autoit
@@ -739,7 +679,7 @@ Func MonitorPartyHealth()
         
         ; Get info
         $hp = Agent_GetAgentInfo($memberID, "HP")
-        $energy = Agent_GetAgentInfo($memberID, "Energy")
+        $energy = Agent_GetAgentInfo($memberID, "EnergyPercent")
         $isDead = Agent_GetAgentInfo($memberID, "IsDead")
         
         ; Display
@@ -759,8 +699,6 @@ While True
     Sleep(5000)
 WEnd
 ```
-
----
 
 ### Example 3: Smart Targeting
 
@@ -811,8 +749,6 @@ Func SmartTargeting()
 EndFunc
 ```
 
----
-
 ## Related Documentation
 
 - **[Module Structure](../2-Architecture/Module-Structure.md)** - How modules work
@@ -820,8 +756,6 @@ EndFunc
 - **[Skill Module](Skill-Module.md)** - Combat skills
 - **[Map Module](Map-Module.md)** - Movement
 - **[Player & Party Modules](Player-Party-Modules.md)** - Party management
-
----
 
 ## Summary
 

@@ -11,15 +11,11 @@
 
 This section explains how GwAu3 works internally - the systems that make bot automation possible.
 
----
-
 ## 📖 Recommended Reading Order
 
 ### 🌟 Start Here
 **[1. Overview](Overview.md)** ⏱️ 10 min  
 High-level architecture - how all the pieces fit together. Read this first!
-
----
 
 ### 🔧 Core Systems
 
@@ -35,8 +31,6 @@ How commands are sent to the game (queue system and packets).
 **[5. Module Structure](Module-Structure.md)** ⏱️ 10 min  
 How GwAu3 code is organized (Cmd vs Data modules).
 
----
-
 ## 📚 What You'll Learn
 
 After reading this section, you'll understand:
@@ -45,8 +39,6 @@ After reading this section, you'll understand:
 - ✅ How commands are sent to the game
 - ✅ How GwAu3 code is organized
 - ✅ The difference between Cmd and Data modules
-
----
 
 ## 🔗 Related Documentation
 

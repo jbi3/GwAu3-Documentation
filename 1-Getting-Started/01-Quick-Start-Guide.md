@@ -17,8 +17,6 @@
 6. [Running Your Bot](#running-your-bot)
 7. [Next Steps](#next-steps)
 
----
-
 ## What You'll Build
 
 In this guide, you'll create a simple but functional Guild Wars bot that:
@@ -29,8 +27,6 @@ In this guide, you'll create a simple but functional Guild Wars bot that:
 - ✅ Monitors your health and energy
 
 **Time to complete**: 10-15 minutes
-
----
 
 ## Prerequisites
 
@@ -55,8 +51,6 @@ In this guide, you'll create a simple but functional Guild Wars bot that:
 - ❌ **No Guild Wars bot development experience needed!**
 - ✅ Just follow the steps
 
----
-
 ## Setup
 
 ### Step 1: Verify AutoIt Installation
@@ -73,8 +67,6 @@ In this guide, you'll create a simple but functional Guild Wars bot that:
 3. Verify "File description" shows "AutoIt v3" and architecture is x86 (32-bit)
 
 **If files are missing**: AutoIt is not installed correctly. Reinstall 32-bit version.
-
----
 
 ### Step 2: Understand Project Structure
 
@@ -94,8 +86,6 @@ GwAu3-main/
 ```
 
 **Rule**: Create new bots in `Scripts/` folder - NEVER modify `API/` or `Utilities/`!
-
----
 
 ### Step 3: Create Your Bot Folder
 
@@ -249,8 +239,6 @@ Func AttackNearestEnemy()
 EndFunc
 ```
 
----
-
 ### Step 2: Configure Your Bot
 
 **IMPORTANT**: Change this line to your character's name:
@@ -265,8 +253,6 @@ Global Const $CHARACTER_NAME = "Farming Ranger"
 ```
 
 **The name must EXACTLY match your in-game character name!**
-
----
 
 ### Step 3: Add Misc.au3 Include
 
@@ -297,8 +283,6 @@ Local $gwHandle = Core_Initialize($CHARACTER_NAME)
 
 **See**: [Core Functions - Core_Initialize](../3-Core-Systems/Core-Functions.md#core_initialize)
 
----
-
 ### Status Check
 
 ```autoit
@@ -310,8 +294,6 @@ WEnd
 **What it does**:
 - Waits until character is fully in-game
 - Prevents errors from running commands while loading
-
----
 
 ### Main Loop
 
@@ -328,8 +310,6 @@ WEnd
 - Updates status display
 - Finds and attacks enemies
 - Repeats until ESC pressed
-
----
 
 ### Death Check
 
@@ -348,8 +328,6 @@ EndIf
 - Waits 10 seconds for respawn
 - Continues bot loop after respawn
 
----
-
 ### Display Function
 
 ```autoit
@@ -364,8 +342,6 @@ Local $hp = Agent_GetAgentInfo(-2, "HP")
 - Displays in console
 
 **See**: [Agent Module - Agent_GetAgentInfo](../4-Modules-Reference/Agent-Module.md#agent_getagentinfo)
-
----
 
 ### Attack Function
 
@@ -392,16 +368,12 @@ Local $enemy = Agent_TargetNearestEnemy(1200)
 3. **Enter the game world** (not character select screen)
 4. **Go to a safe area** for testing (e.g., outpost or low-level zone)
 
----
-
 ### Step 2: Run the Script
 
 **From SciTE Editor**
 1. Open `MyBot.au3` in SciTE (AutoIt editor)
 2. Press **F5** to run
 3. Watch the console output
-
----
 
 ### Step 3: Watch It Work!
 
@@ -421,8 +393,6 @@ Enemy found! ID: 2891
 Distance to enemy: 987.3
 Attacking with skill 1...
 ```
-
----
 
 ### Step 4: Stop the Bot
 
@@ -445,8 +415,6 @@ Attacking with skill 1...
 - Make sure you're in-game, not character select
 - Reinstall AutoIt 32-bit if needed
 
----
-
 ### "No enemies found"
 
 **Possible causes**:
@@ -459,8 +427,6 @@ Attacking with skill 1...
 - Move closer to enemies
 - Wait for enemies to respawn
 
----
-
 ### Bot does nothing
 
 **Possible causes**:
@@ -472,8 +438,6 @@ Attacking with skill 1...
 - Make sure skill bar has a skill in slot 1
 - Check energy isn't depleted
 - Try increasing attack range
-
----
 
 ### Script errors
 
@@ -520,8 +484,6 @@ Local $enemyY = Agent_GetAgentInfo($enemy, "Y")
 Map_Move($enemyX, $enemyY)
 ```
 
----
-
 ### Learn More
 
 Now that you have a working bot, dive deeper:
@@ -531,16 +493,12 @@ Now that you have a working bot, dive deeper:
 3. **[Architecture Overview](../2-Architecture/Overview.md)** - Understand how GwAu3 works
 4. **[Core Functions](../3-Core-Systems/Core-Functions.md)** - Low-level API reference
 
----
-
 ### Study Existing Bots
 
 Look at example bots in the `Scripts/` folder to learn advanced techniques:
 - Study movement and combat logic
 - See how agents and targets are managed
 - Learn skillbar and inventory management patterns
-
----
 
 ### Join the Community
 
@@ -568,8 +526,6 @@ Look at example bots in the `Scripts/` folder to learn advanced techniques:
 - `Skill_UseSkill()` - Use combat skills
 
 **You're now ready to build more complex bots!**
-
----
 
 ## Quick Reference Card
 

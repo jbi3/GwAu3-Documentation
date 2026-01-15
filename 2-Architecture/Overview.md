@@ -4,8 +4,6 @@
 **Difficulty**: Intermediate  
 **Prerequisites**: Basic understanding of AutoIt3 and Guild Wars
 
----
-
 ## 📖 Table of Contents
 
 1. [Introduction](#introduction)
@@ -16,8 +14,6 @@
 6. [Module Organization](#module-organization)
 7. [Key Design Patterns](#key-design-patterns)
 8. [Memory Architecture](#memory-architecture)
-
----
 
 ## Introduction
 
@@ -30,8 +26,6 @@ GwAu3 (Guild Wars AutoIt3) is a comprehensive framework that provides programmat
 5. **Writing** commands to game memory to control the character
 
 This document provides a high-level overview of how all these pieces work together.
-
----
 
 ## High-Level Architecture
 
@@ -70,8 +64,6 @@ This document provides a high-level overview of how all these pieces work togeth
 └─────────────────────────────────────────────────────────────┘
 ```
 
----
-
 ## Core Components
 
 ### 1. **Memory System** (`GwAu3_Core_Memory.au3`)
@@ -86,8 +78,6 @@ This document provides a high-level overview of how all these pieces work togeth
 - `Memory_ReadArray($Address)` - Reads arrays from memory
 
 **How it works**: Uses Windows API calls (`ReadProcessMemory`, `WriteProcessMemory`) through AutoIt's `DllCall()` to access another process's memory space.
-
----
 
 ### 2. **Scanner System** (`GwAu3_Core_Scanner.au3`)
 
@@ -104,8 +94,6 @@ This document provides a high-level overview of how all these pieces work togeth
 - **Byte patterns**: `'8B0C9085C97419'` - Hex sequences
 - **Debug strings**: `"P:\Code\Gw\Ui\UiPregame.cpp"` - Build paths left in the executable
 
----
-
 ### 3. **Assembler System** (`GwAu3_Core_Assembler.au3`)
 
 **Purpose**: Injects custom x86 assembly code into Guild Wars process.
@@ -117,8 +105,6 @@ This document provides a high-level overview of how all these pieces work togeth
 - Implements command queue system for thread-safe execution
 
 **Why it's needed**: Some operations (like sending packets or changing targets) must be executed from within the game's thread. The assembler creates "trampolines" that the bot can trigger.
-
----
 
 ### 4. **Packet/Queue System**
 
@@ -132,8 +118,6 @@ This document provides a high-level overview of how all these pieces work togeth
 5. Queue pointer advances to next command
 
 **Why it's needed**: Prevents race conditions and crashes when multiple commands are sent rapidly.
-
----
 
 ### 5. **Module System** (`Modules/`)
 
@@ -154,8 +138,6 @@ Retrieve information from the game:
 - `Map_GetMapID()` - Get current map
 - `Player_GetEnergy()` - Get energy level
 - `Party_GetHeroCount()` - Count heroes
-
----
 
 ## Initialization Flow
 
@@ -233,8 +215,6 @@ Core_Initialize("Character Name")
 
 **Total Time**: Usually 1-3 seconds depending on scanning speed.
 
----
-
 ## Data Flow
 
 ### Reading Game State
@@ -278,8 +258,6 @@ Bot Script                     GwAu3 API                      Guild Wars Process
      │                             │                                │ function
      │ (Bot waits if needed)       │                                │
 ```
-
----
 
 ## Module Organization
 
@@ -331,8 +309,6 @@ API/
   - `$g_b_` - Boolean
   - `$g_d_` - DllStruct
   - `$g_ap_` - Array of pointers
-
----
 
 ## Key Design Patterns
 
@@ -396,8 +372,6 @@ Core_Enqueue($g_p_UseSkillStruct, 16)
 ; ... executes skill 3
 ```
 
----
-
 ## Memory Architecture
 
 ### Guild Wars Memory Layout
@@ -460,16 +434,12 @@ Allocated Region (typically 0x10000 bytes)
 └── Hook trampolines    (Jump redirections)
 ```
 
----
-
 ## Related Documentation
 
 - **[Memory System](Memory-System.md)** - Detailed memory operations
 - **[Scanner System](Scanner-System.md)** - Pattern scanning explained
 - **[Packet System](Packet-System.md)** - Packet and queue details
 - **[Module Structure](Module-Structure.md)** - How modules are organized
-
----
 
 ## Summary
 
@@ -490,7 +460,5 @@ Data flows:
 - **Writing**: Bot → API → Queue → Injected Code → Game
 
 This architecture provides a clean, stable interface to control Guild Wars programmatically while handling the complexity of memory manipulation and code injection behind the scenes.
-
----
 
 *Next Steps: Read about the [Memory System](Memory-System.md) to understand low-level operations, or jump to [Module Structure](Module-Structure.md) to see how to use the API.*

@@ -7,8 +7,6 @@
 - `API/Modules/Cmd/GwAu3_Cmd_Item.au3`
 - `API/Modules/Data/GwAu3_Data_Item.au3`
 
----
-
 ## 📖 Table of Contents
 
 - [Overview](#overview)
@@ -20,8 +18,6 @@
 - [Item Information](#item-information)
 - [Finding Items](#finding-items)
 - [Complete Examples](#complete-examples)
-
----
 
 ## Overview
 
@@ -36,8 +32,6 @@ The **Item Module** provides functions for:
 
 **Essential for**: Farming bots, inventory management, loot filtering, trading
 
----
-
 ## Common Use Cases
 
 ### 1. Pick Up Loot
@@ -48,8 +42,9 @@ Local $item = Item_GetNearestItemInRange(1500)
 
 If $item Then
     ; Move to item
-    Local $itemPos = Agent_GetAgentInfo($item, "Pos")
-    Map_Move($itemPos[0], $itemPos[1])
+    Local $itemX = Agent_GetAgentInfo($item, "X")
+    Local $itemY = Agent_GetAgentInfo($item, "Y")
+    Map_Move($itemX, $itemY)
     Sleep(1000)
     
     ; Pick it up
@@ -57,8 +52,6 @@ If $item Then
     Sleep(500)
 EndIf
 ```
-
----
 
 ### 2. Identify Items
 
@@ -78,8 +71,6 @@ For $bag = 1 To 4
 Next
 ```
 
----
-
 ### 3. Salvage Junk
 
 ```autoit
@@ -97,8 +88,6 @@ For $bag = 1 To 4
 Next
 ```
 
----
-
 ### 4. Check Inventory Space
 
 ```autoit
@@ -112,8 +101,6 @@ Func IsInventoryFull()
 EndFunc
 ```
 
----
-
 ### 5. Deposit Gold
 
 ```autoit
@@ -123,8 +110,6 @@ Item_DepositGold()  ; Deposits all character gold
 ; Deposit specific amount
 Item_DepositGold(50000)  ; Deposit 50k
 ```
-
----
 
 ## Quick Reference Card
 
@@ -156,8 +141,6 @@ Item_DepositGold($amount)                  ; Deposit to storage
 Item_WithdrawGold($amount)                 ; Withdraw from storage
 ```
 
----
-
 ## Item Actions
 
 ### Item_PickUpItem
@@ -185,8 +168,6 @@ If $item Then
 EndIf
 ```
 
----
-
 ### Item_UseItem
 
 Use a consumable item.
@@ -210,8 +191,6 @@ Local $idKit = Item_FindItemByModelID(2989)
 Item_UseItem($idKit)
 ```
 
----
-
 ### Item_EquipItem
 
 Equip an item (weapon, armor).
@@ -230,8 +209,6 @@ Item_EquipItem($a_v_Item)
 Local $weapon = Item_FindItemByModelID(15540)  ; Fiery Dragon Sword
 If $weapon Then Item_EquipItem($weapon)
 ```
-
----
 
 ### Item_DropItem
 
@@ -255,8 +232,6 @@ Item_DropItem($itemID)
 Item_DropItem($itemID, 10)
 ```
 
----
-
 ### Item_DestroyItem
 
 Permanently destroy an item.
@@ -273,8 +248,6 @@ Item_DestroyItem($itemID)
 ```
 
 **Warning:** Cannot be undone!
-
----
 
 ## Identification & Salvage
 
@@ -309,8 +282,6 @@ Item_IdentifyItem($item, "Superior")
 ; Identify with normal kit (cheaper, lower success rate)
 Item_IdentifyItem($item, "Normal")
 ```
-
----
 
 ### Item_SalvageItem
 
@@ -355,8 +326,6 @@ Item_SalvageItem($item, "Expert", "Inscription")
 - **Standard** - Materials only, cannot salvage upgrades
 - **Charr** - 50% materials, 25 uses
 
----
-
 ## Inventory Management
 
 ### Item_MoveItem
@@ -378,8 +347,6 @@ Item_MoveItem($a_v_Item, $a_i_BagNumber, $a_i_Slot)
 ; Move item to bag 2, slot 5
 Item_MoveItem($itemID, 2, 5)
 ```
-
----
 
 ### Item_GetBagInfo
 
@@ -415,8 +382,6 @@ Item_GetBagInfo($bag, "IsStorage")         ; Type 4
 Item_GetBagInfo($bag, "IsMaterialStorage") ; Type 5
 ```
 
----
-
 ### Item_GetItemBySlot
 
 Get item at specific bag/slot.
@@ -442,8 +407,6 @@ For $slot = 1 To Item_GetBagInfo(1, "Slots")
 Next
 ```
 
----
-
 ### Item_AcceptAllItems
 
 Accept unclaimed items after mission.
@@ -459,8 +422,6 @@ Item_AcceptAllItems()
 Item_AcceptAllItems()
 Sleep(1000)
 ```
-
----
 
 ## Gold Management
 
@@ -489,8 +450,6 @@ Item_DepositGold(50000)
 - Respects 1,000,000 gold storage limit
 - Automatically calculates max possible deposit
 
----
-
 ### Item_WithdrawGold
 
 Withdraw gold from storage.
@@ -515,8 +474,6 @@ Item_WithdrawGold(25000)
 **Notes:**
 - Respects 100,000 gold character limit
 
----
-
 ### Item_DropGold
 
 Drop gold on ground.
@@ -531,8 +488,6 @@ Item_DropGold($a_i_Amount = 0)
 ; Drop 1000 gold
 Item_DropGold(1000)
 ```
-
----
 
 ### Item_GetInventoryInfo
 
@@ -555,8 +510,6 @@ Local $storage = Item_GetInventoryInfo("GoldStorage")
 ```autoit
 Local $set = Item_GetInventoryInfo("ActiveWeaponSet")
 ```
-
----
 
 ## Item Information
 
@@ -602,8 +555,6 @@ ConsoleWrite("Identified: " & $isID & @CRLF)
 - `2624` - Gold (rare, max stats)
 - `2625` - Green (unique)
 
----
-
 ### Item_GetItemInfoByItemID
 
 Get item info by item ID (instead of pointer).
@@ -617,8 +568,6 @@ Item_GetItemInfoByItemID($a_v_ItemID, $a_s_Info = "")
 ```autoit
 Local $rarity = Item_GetItemInfoByItemID($itemID, "Rarity")
 ```
-
----
 
 ## Finding Items
 
@@ -646,8 +595,6 @@ EndIf
 Local $sword = Item_FindItemByModelID(15540)
 ```
 
----
-
 ### Item_GetNearestItemInRange
 
 Find nearest item on ground within range.
@@ -670,14 +617,13 @@ Local $item = Item_GetNearestItemInRange(1500)
 
 If $item Then
     ; Move to and pick up
-    Local $pos = Agent_GetAgentInfo($item, "Pos")
-    Map_Move($pos[0], $pos[1])
+    Local $itemX = Agent_GetAgentInfo($item, "X")
+    Local $itemY = Agent_GetAgentInfo($item, "Y")
+    Map_Move($itemX, $itemY)
     Sleep(1000)
     Item_PickUpItem($item)
 EndIf
 ```
-
----
 
 ### Item_FindItemByAgentID
 
@@ -692,8 +638,6 @@ Item_FindItemByAgentID($a_i_AgentID)
 ```autoit
 Local $itemID = Item_FindItemByAgentID($agentID)
 ```
-
----
 
 ## Complete Examples
 
@@ -729,8 +673,6 @@ Func IdentifyAllItems()
 EndFunc
 ```
 
----
-
 ### Smart Salvage Bot
 
 ```autoit
@@ -762,8 +704,6 @@ Func SalvageJunkItems()
 EndFunc
 ```
 
----
-
 ### Loot Pickup Bot
 
 ```autoit
@@ -789,8 +729,9 @@ Func CollectLoot()
         EndIf
         
         ; Move to item
-        Local $pos = Agent_GetAgentInfo($item, "Pos")
-        Map_Move($pos[0], $pos[1])
+        Local $itemX = Agent_GetAgentInfo($item, "X")
+        Local $itemY = Agent_GetAgentInfo($item, "Y")
+        Map_Move($itemX, $itemY)
         
         ; Wait to arrive
         Sleep(1500)
@@ -802,8 +743,6 @@ Func CollectLoot()
     WEnd
 EndFunc
 ```
-
----
 
 ### Gold Manager
 
@@ -831,16 +770,12 @@ Func ManageGold()
 EndFunc
 ```
 
----
-
 ## See Also
 
 - **[Agent Module](Agent-Module.md)** - For item agents on ground
 - **[Map Module](Map-Module.md)** - For movement to items
 - **[Merchant Module](Merchant-Module.md)** - For buying/selling
 - **[Trade Module](Trade-Module.md)** - For player trading
-
----
 
 ## Tips & Best Practices
 
@@ -854,8 +789,6 @@ If $freeSlots > 0 Then
 EndIf
 ```
 
----
-
 ### 2. Wait After Actions
 
 ```autoit
@@ -866,8 +799,6 @@ Sleep(1000)  ; Wait for ID animation
 Item_SalvageItem($item, "Expert", "Materials")
 Sleep(1500)  ; Salvage takes longer
 ```
-
----
 
 ### 3. Use Superior Kits for Valuable Items
 

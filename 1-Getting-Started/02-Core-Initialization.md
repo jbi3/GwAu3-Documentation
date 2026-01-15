@@ -18,8 +18,6 @@
 7. [Common Issues](#common-issues)
 8. [Best Practices](#best-practices)
 
----
-
 ## Overview
 
 **Core_Initialize()** is the most important function in GwAu3. It establishes the connection between your bot and Guild Wars by:
@@ -30,8 +28,6 @@
 - Setting up global pointers and structures
 
 **Without successful initialization, nothing else works!**
-
----
 
 ## What Happens During Initialization
 
@@ -56,8 +52,6 @@ Core_Initialize() called
 
 **Pattern scanning is slow but only happens once per GW session!**
 
----
-
 ## Initialization Process
 
 ### Step 1: Call Core_Initialize
@@ -75,8 +69,6 @@ Core_Initialize($characterName, $changeTitle = True)
 - **Success**: Window handle (HWND) to Guild Wars window
 - **Failure**: `0`
 
----
-
 ### Step 2: Update Check (Automatic)
 
 ```autoit
@@ -90,14 +82,12 @@ Local $l_i_UpdateStatus = Updater_CheckForGwAu3Updates()
 - `3` - Updates disabled
 - `4` - Update complete
 
-**How to disable updates**:
+**WARNING: How to disable updates**:
 Edit `API/Core/config.ini`:
 ```ini
 [Updater]
-CheckForUpdates=false
+Enabled=0
 ```
-
----
 
 ### Step 3: Process Detection
 
@@ -118,8 +108,6 @@ Local $gwHandle = Core_Initialize("My Character Name")
 **Pros**: Multiple GW instances supported automatically  
 **Cons**: Slower (scans all processes)
 
----
-
 #### Mode 2: By Process ID
 
 ```autoit
@@ -137,8 +125,6 @@ Local $gwHandle = Core_Initialize($gwPID)
 
 **Pros**: Faster  
 **Cons**: Doesn't handle multiple GW instances well
-
----
 
 ### Step 4: Memory Opening
 
@@ -162,8 +148,6 @@ $g_h_GWProcess = $result[0]
 
 **If this fails**: Bot cannot read/write memory!
 
----
-
 ### Step 5: Pattern Scanning
 
 This is the **most critical and time-consuming** step!
@@ -182,8 +166,6 @@ Scanner_AddPattern('BasePointer', '506A0F6A00FF35', 0x8, 'Ptr')
 - `0x8` - Offset from found location
 - `'Ptr'` - Data type to read at offset
 
----
-
 **Why scanning takes time**:
 - 200+ patterns to find
 - Searches entire `.text` section (code) and `.rdata` section (read-only data)
@@ -191,8 +173,6 @@ Scanner_AddPattern('BasePointer', '506A0F6A00FF35', 0x8, 'Ptr')
 - Typical `.text` section: 8-12 MB to scan
 
 **Optimization**: Results are cached in global array for instant re-use
-
----
 
 **Core patterns added**:
 ```autoit
@@ -210,8 +190,6 @@ Scanner_AddPattern('CommandAction', '558BEC83EC08894DF8', -0xF, 'Ptr')
 ```
 
 **See**: [Scanner System](../2-Architecture/Scanner-System.md) for full details
-
----
 
 ### Step 6: Extract Addresses
 
@@ -231,8 +209,6 @@ $g_p_WorldBase = Memory_Read(Scanner_GetScanResult('WorldBase', $g_ap_ScanResult
 - ... 150+ more globals
 
 **These pointers are used by ALL GwAu3 functions!**
-
----
 
 ### Step 7: Setup Command Structures
 
@@ -259,8 +235,6 @@ DllStructSetData($g_d_Action, 4, $g_p_ActionQueue)
 
 **See**: [Packet System](../2-Architecture/Packet-System.md)
 
----
-
 ### Step 8: Window Title Change (Optional)
 
 ```autoit
@@ -277,8 +251,6 @@ EndIf
 ```autoit
 Core_Initialize("Character Name", False)  ; No title change
 ```
-
----
 
 ## Advanced Initialization Options
 
@@ -300,8 +272,6 @@ EndFunc
 
 **When to use**: When you need addresses GwAu3 doesn't provide
 
----
-
 ### Custom Initialization Results
 
 Extract your own pattern results:
@@ -316,8 +286,6 @@ Func Extend_InitializeResult()
     $g_p_MyCustomPointer = Memory_Read(Scanner_GetScanResult('MyCustomPattern', $g_ap_ScanResults, 'Ptr'))
 EndFunc
 ```
-
----
 
 ## Multiple Character Support
 
@@ -345,8 +313,6 @@ EndIf
 - ❌ Can't control multiple characters from same script
 - ✅ Can initialize multiple, but must switch between them
 
----
-
 ### The Global Variable Problem
 
 ```autoit
@@ -358,8 +324,6 @@ Global $g_p_AgentBase        ; Agent base
 ```
 
 **When you initialize a new character, these globals are OVERWRITTEN!**
-
----
 
 ### Workaround: Separate Scripts
 
@@ -386,8 +350,6 @@ Core_Initialize($characterName)
 
 **See**: `Scripts/Multi-Launcher/GwAu3 Multi-Launcher.au3` for a complete example
 
----
-
 ## Error Handling
 
 ### Checking Initialization Success
@@ -403,8 +365,6 @@ If $gwHandle = 0 Then
     Exit
 EndIf
 ```
-
----
 
 ### Common Failure Reasons
 
@@ -443,8 +403,6 @@ If @AutoItX64 Then
 EndIf
 ```
 
----
-
 ### Comprehensive Error Handler
 
 ```autoit
@@ -478,8 +436,6 @@ Func _HandleInitializationError()
 EndFunc
 ```
 
----
-
 ## Common Issues
 
 ### Issue: Initialization Takes Too Long
@@ -496,8 +452,6 @@ EndFunc
 - Add AutoIt to anti-virus exclusions
 - Close other programs
 
----
-
 ### Issue: "Access Denied" Error
 
 **Symptom**: `Memory_Open()` returns 0
@@ -508,8 +462,6 @@ EndFunc
 1. Close bot script
 2. Right-click script → "Run as Administrator"
 3. Try again
-
----
 
 ### Issue: Character Name Not Found
 
@@ -529,7 +481,6 @@ Memory_Close()
 - Wrong case: Names ARE case-sensitive
 - Special characters not matching
 
----
 
 ### Issue: Bot Works Once, Then Fails
 
@@ -542,8 +493,6 @@ Memory_Close()
 ; At end of script
 Memory_Close()
 ```
-
----
 
 ## Best Practices
 
@@ -559,8 +508,6 @@ EndIf
 
 **Never proceed without valid handle!**
 
----
-
 ### 2. Wait for In-Game Status
 
 ```autoit
@@ -573,8 +520,6 @@ ConsoleWrite("Ready!" & @CRLF)
 
 **Why**: Prevents commands being sent before game is ready
 
----
-
 ### 3. Use Character Name, Not PID
 
 ```autoit
@@ -585,19 +530,15 @@ Core_Initialize("My Char Name")
 Core_Initialize(ProcessList("gw.exe")[1][1])
 ```
 
----
-
 ### 4. Disable Updates for Production Bots
 
 Edit `API/Core/config.ini`:
 ```ini
 [Updater]
-CheckForUpdates=false
+Enabled=0
 ```
 
 **Why**: Prevents unexpected downtime from failed updates
-
----
 
 ### 5. Add Initialization Timeout
 
@@ -620,8 +561,6 @@ Func InitializeWithTimeout($charName, $timeoutSeconds = 30)
 EndFunc
 ```
 
----
-
 ### 6. Log Initialization Details
 
 ```autoit
@@ -635,8 +574,6 @@ ConsoleWrite("=============================" & @CRLF & @CRLF)
 ```
 
 **Why**: Helps debug issues later
-
----
 
 ## Summary
 
