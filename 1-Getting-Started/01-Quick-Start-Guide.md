@@ -111,6 +111,11 @@ Open `MyBot.au3` in AutoIt editor (SciTE) and paste this code:
 ; Description: Simple combat bot that targets and attacks enemies
 ; ===================================================================
 
+; AutoIt compiler directives
+#include-once
+#RequireAdmin
+#NoTrayIcon
+
 ; Include GwAu3 library (adjust path to point to API folder)
 #include "..\..\API\_GwAu3.au3"
 
@@ -254,20 +259,53 @@ Global Const $CHARACTER_NAME = "Farming Ranger"
 
 **The name must EXACTLY match your in-game character name!**
 
-### Step 3: Add Misc.au3 Include
+### Step 3: Verify Complete Header
 
-The `_IsPressed()` function requires Misc.au3. Add this at the top after the GwAu3 include:
+Make sure your script header looks like this with all directives and includes:
 
 ```autoit
+; AutoIt compiler directives
+#include-once
+#RequireAdmin
+#NoTrayIcon
+
+; Include GwAu3 library
 #include "..\..\API\_GwAu3.au3"
-#include <Misc.au3>  ; ← Add this line
+#include <Misc.au3>  ; For _IsPressed() function
 ```
+
+The `_IsPressed()` function (used for ESC key detection) requires the Misc.au3 library.
 
 ---
 
 ## Understanding the Code
 
 Let's break down what this bot does:
+
+### Script Directives
+
+```autoit
+#include-once
+#RequireAdmin
+#NoTrayIcon
+```
+
+**What they do**:
+
+**`#include-once`**: Prevents this file from being included multiple times
+- Best practice for any AutoIt script
+- Avoids "duplicate function" errors
+
+**`#RequireAdmin`**: Forces script to run with administrator privileges
+- **REQUIRED** for GwAu3 bots to work
+- Needed to access Guild Wars process memory
+- Will show UAC prompt when script starts
+
+**`#NoTrayIcon`**: Hides the AutoIt tray icon
+- Keeps system tray clean
+- Bot runs without showing green "H" icon in taskbar
+
+**Why RequireAdmin is essential**: GwAu3 needs to read/write Guild Wars memory, which requires admin rights. Without this, `Core_Initialize()` will fail.
 
 ### Initialization Section
 
@@ -373,7 +411,10 @@ Local $enemy = Agent_TargetNearestEnemy(1200)
 **From SciTE Editor**
 1. Open `MyBot.au3` in SciTE (AutoIt editor)
 2. Press **F5** to run
-3. Watch the console output
+3. **Allow administrator access** when Windows UAC prompts you (click "Yes")
+4. Watch the console output
+
+**Note**: The UAC prompt appears because `#RequireAdmin` directive requests administrator privileges, which are required for GwAu3 to access Guild Wars memory.
 
 ### Step 3: Watch It Work!
 
@@ -409,10 +450,12 @@ Attacking with skill 1...
 2. Character name doesn't match
 3. Not logged in to character yet
 4. AutoIt is 64-bit instead of 32-bit
+5. Script not running as administrator
 
 **Solution**:
 - Verify character name exactly matches
 - Make sure you're in-game, not character select
+- **Allow UAC prompt** when script starts (click "Yes")
 - Reinstall AutoIt 32-bit if needed
 
 ### "No enemies found"
@@ -530,8 +573,14 @@ Look at example bots in the `Scripts/` folder to learn advanced techniques:
 ## Quick Reference Card
 
 ```autoit
-; === INITIALIZATION ===
+; === SCRIPT SETUP ===
+#include-once                             ; Prevent duplicate includes
+#RequireAdmin                            ; REQUIRED for GwAu3
+#NoTrayIcon                              ; Hide tray icon
 #include "..\..\API\_GwAu3.au3"
+#include <Misc.au3>                      ; For _IsPressed()
+
+; === INITIALIZATION ===
 Core_Initialize("Character Name")
 
 ; === YOUR CHARACTER ===

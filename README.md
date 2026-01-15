@@ -81,6 +81,7 @@ This is based on my experience learning GwAu3 and reflects my journey.
 - SmartCast - Utility AI - AI-driven skill usage system
 - Packet Crafting - Custom packet creation
 - Memory Patterns - Advanced scanner usage
+- [GWLauncher](https://github.com/gwdevhub/gwlauncher) - Multi-account launcher for easy management of multiple Guild Wars accounts
 
 ### 7. Learning Guides 📝
 *Educational content for mastering GwAu3*
